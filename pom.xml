@@ -721,9 +721,9 @@
    <!-- SCM and Distribution Management -->
 
    <scm>
-      <connection>scm:git:git://github.com/weld/build.git</connection>
-      <developerConnection>scm:git:git://github.com/weld/build.git</developerConnection>
-      <url>scm:git:git://github.com/weld/build.git</url>
+      <connection>scm:git:git://github.com/weld/parent.git</connection>
+      <developerConnection>scm:git:git://github.com/weld/parent.git</developerConnection>
+      <url>scm:git:git://github.com/weld/parent.git</url>
    </scm>
 
    <distributionManagement>
