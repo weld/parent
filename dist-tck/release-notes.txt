@@ -1,9 +1,0 @@
--------------
-* 1.0.1.Final *
--------------
-
-Known Issues
--------------
-
-There are no known critical or showstopper issues
-
