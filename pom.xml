@@ -76,6 +76,7 @@
       <!-- ***************** -->
       <jboss.releases.repo.url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</jboss.releases.repo.url>
       <jboss.snapshots.repo.url>https://repository.jboss.org/nexus/content/repositories/snapshots/</jboss.snapshots.repo.url>
+      <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
    </properties>
 
    <prerequisites>
@@ -354,7 +355,7 @@
                               <Os-Arch>${os.arch}</Os-Arch>
                               <Os-Version>${os.version}</Os-Version>
                               <SCM>r${buildNumber}</SCM>
-                              <Build-Time>${timestamp}</Build-Time>
+                              <Build-Time>${maven.build.timestamp}</Build-Time>
                            </manifestEntries>
                         </manifestSection>
                      </manifestSections>
