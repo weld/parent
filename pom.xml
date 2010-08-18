@@ -338,7 +338,7 @@
                      <manifestEntries>
                         <Implementation-URL>${project.url}</Implementation-URL>
                         <Implementation-Title>${project.name}</Implementation-Title>
-                        <Implementation-Version>${parsedVersion.osgiVersion}</Implementation-Version>
+                        <Implementation-Version>${maven.build.timestamp}</Implementation-Version>
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                         <Specification-Title>${project.name}</Specification-Title>
                         <Specification-Version>${parsedVersion.osgiVersion}</Specification-Version>
