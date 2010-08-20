@@ -573,12 +573,12 @@
             <plugin>
                <groupId>org.codehaus.cargo</groupId>
                <artifactId>cargo-maven2-plugin</artifactId>
-               <version>1.0</version>
+               <version>1.0.1</version>
             </plugin>
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>selenium-maven-plugin</artifactId>
-               <version>1.0</version>
+               <version>1.0.1</version>
             </plugin>
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
