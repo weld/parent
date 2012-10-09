@@ -3,7 +3,7 @@
    <groupId>org.jboss.weld</groupId>
    <artifactId>weld-parent</artifactId>
    <packaging>pom</packaging>
-   <version>18-SNAPSHOT</version>
+   <version>18</version>
 
    <name>Weld Parent</name>
 
@@ -775,7 +775,8 @@
       <connection>scm:git:git@github.com:weld/parent.git</connection>
       <developerConnection>scm:git:git@github.com:weld/parent.git</developerConnection>
       <url>scm:git:git@github.com:weld/parent.git</url>
-   </scm>
+     <tag>18</tag>
+  </scm>
 
    <distributionManagement>
       <repository>
