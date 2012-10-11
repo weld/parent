@@ -42,6 +42,10 @@
       <jbossorg.docbook.version>1.1.0</jbossorg.docbook.version>
       <pdf.name>${project.artifactId}.pdf</pdf.name>
       <minimum.maven.version>3.0.3</minimum.maven.version>
+      <!-- plugins -->
+      <surefire.version>2.12.1</surefire.version>
+      <compiler.version>2.5.1</compiler.version>
+      <release.version>2.3.2</release.version>
 
       <!-- ***************** -->
       <!-- Repository Deployment URLs -->
@@ -190,17 +194,17 @@
                   <arguments>-Drelease </arguments>
                   <autoVersionSubmodules>true</autoVersionSubmodules>
                </configuration>
-               <version>2.3.2</version>
+               <version>${release.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-surefire-report-plugin</artifactId>
-               <version>2.12.4</version>
+               <version>${surefire.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-surefire-plugin</artifactId>
-               <version>2.12.4</version>
+               <version>${surefire.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
@@ -314,7 +318,7 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-compiler-plugin</artifactId>
-               <version>2.5.1</version>
+               <version>${compiler.version}</version>
                <configuration>
                   <source>1.5</source>
                   <target>1.5</target>
