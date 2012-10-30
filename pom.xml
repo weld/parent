@@ -45,7 +45,7 @@
       <!-- plugins -->
       <surefire.version>2.12.1</surefire.version>
       <compiler.version>2.5.1</compiler.version>
-      <release.version>2.3.2</release.version>
+      <release.version>2.2.1</release.version>
 
       <!-- ***************** -->
       <!-- Repository Deployment URLs -->
@@ -272,7 +272,7 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-gpg-plugin</artifactId>
-               <version>1.0-alpha-4</version>
+               <version>1.4</version>
             </plugin>
             <plugin>
                <groupId>org.apache.felix</groupId>
