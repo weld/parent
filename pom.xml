@@ -42,10 +42,12 @@
       <jbossorg.docbook.version>1.1.0</jbossorg.docbook.version>
       <pdf.name>${project.artifactId}.pdf</pdf.name>
       <minimum.maven.version>3.0.3</minimum.maven.version>
+      <build.config.version>1</build.config.version>
       <!-- plugins -->
       <surefire.version>2.12.1</surefire.version>
       <compiler.version>2.5.1</compiler.version>
       <release.version>2.2.1</release.version>
+      <checkstyle.version>2.10</checkstyle.version>
 
       <!-- ***************** -->
       <!-- Repository Deployment URLs -->
@@ -563,6 +565,33 @@
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-scm-plugin</artifactId>
                <version>1.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.version}</version>
+                <configuration>
+                    <configLocation>weld-checkstyle/checkstyle.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <useFile />
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jboss.weld</groupId>
+                        <artifactId>weld-common-build-config</artifactId>
+                        <version>${build.config.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>check-style</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>checkstyle</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
          </plugins>
       </pluginManagement>
