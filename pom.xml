@@ -118,7 +118,7 @@
             <plugin>
                <groupId>ch.qos.cal10n.plugins</groupId>
                <artifactId>maven-cal10n-plugin</artifactId>
-               <version>0.7.2</version>
+               <version>0.8.1</version>
             </plugin>
             <plugin>
                <groupId>org.jboss.maven.plugins</groupId>
