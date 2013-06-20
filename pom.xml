@@ -44,7 +44,7 @@
       <minimum.maven.version>3.0.3</minimum.maven.version>
       <build.config.version>1</build.config.version>
       <!-- plugins -->
-      <surefire.version>2.12.1</surefire.version>
+      <surefire.version>2.12.4</surefire.version>
       <compiler.version>2.5.1</compiler.version>
       <release.version>2.2.1</release.version>
       <checkstyle.version>2.10</checkstyle.version>
