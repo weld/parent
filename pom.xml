@@ -9,7 +9,7 @@
 
    <!-- Full metadata -->
 
-   <url>http://www.seamframework.org/Weld</url>
+   <url>http://weld.cdi-spec.org</url>
 
    <description>
       The parent POM for Weld, specifying the build parameters
@@ -27,11 +27,6 @@
          <name>Weld committers</name>
       </developer>
    </developers>
-
-   <organization>
-      <name>Seam Framework</name>
-      <url>http://seamframework.org</url>
-   </organization>
 
    <properties>
       <!-- Force encoding to UTF-8 (bug on OS X) -->
