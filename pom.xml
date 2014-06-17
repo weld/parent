@@ -32,17 +32,61 @@
       <!-- Force encoding to UTF-8 (bug on OS X) -->
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      <pdf.name>${project.artifactId}.pdf</pdf.name>
+      <minimum.maven.version>3.0.3</minimum.maven.version>
+      <maven.compiler.source>1.6</maven.compiler.source>
+      <maven.compiler.target>1.6</maven.compiler.target>
+
+      <!-- dependency versions -->
       <weld.docbook.version>1.1.1-Beta3</weld.docbook.version>
       <seam.docbook.version>1.1.0.GA</seam.docbook.version>
       <jbossorg.docbook.version>1.1.0</jbossorg.docbook.version>
-      <pdf.name>${project.artifactId}.pdf</pdf.name>
-      <minimum.maven.version>3.0.3</minimum.maven.version>
       <build.config.version>1</build.config.version>
-      <!-- plugins -->
-      <surefire.version>2.17</surefire.version>
-      <compiler.version>2.5.1</compiler.version>
-      <release.version>2.2.1</release.version>
+
+      <!-- plugin versions -->
+      <antrun.plugin.version>1.3</antrun.plugin.version>
+      <archetype.plugin.version>2.0-alpha-5</archetype.plugin.version>
+      <assembly.plugin.version>2.2-beta-5</assembly.plugin.version>
+      <build.helper.plugin.version>1.5</build.helper.plugin.version>
+      <buildnumber.plugin.version>1.2</buildnumber.plugin.version>
+      <bundle.plugin.version>2.1.0</bundle.plugin.version>
+      <cal10n.plugin.version>0.8.1</cal10n.plugin.version>
+      <cargo.plugin.version>1.0.1</cargo.plugin.version>
       <checkstyle.version>2.10</checkstyle.version>
+      <clean.plugin.version>2.4.1</clean.plugin.version>
+      <cli.plugin.version>1.0.3</cli.plugin.version>
+      <compiler.version>2.5.1</compiler.version>
+      <dependency.plugin.version>2.1</dependency.plugin.version>
+      <deploy.plugin.version>2.5</deploy.plugin.version>
+      <embedded.glassfish.plugin.version>3.0</embedded.glassfish.plugin.version>
+      <ear.plugin.version>2.4.2</ear.plugin.version>
+      <enforcer.plugin.version>1.0-beta-1</enforcer.plugin.version>
+      <ejb.plugin.version>2.2.1</ejb.plugin.version>
+      <emma.plugin.version>1.0-alpha-2</emma.plugin.version>
+      <emma4it.plugin.version>1.3</emma4it.plugin.version>
+      <exec.plugin.version>1.1.1</exec.plugin.version>
+      <failsafe.plugin.version>2.4.3-alpha-1</failsafe.plugin.version>
+      <findbugs.plugin.version>2.3.1</findbugs.plugin.version>
+      <gpg.plugin.version>1.4</gpg.plugin.version>
+      <install.plugin.version>2.3.1</install.plugin.version>
+      <jar.plugin.version>2.3.1</jar.plugin.version>
+      <javadoc.plugin.version>2.7</javadoc.plugin.version>
+      <jboss.plugin.version>1.4</jboss.plugin.version>
+      <jdocbook.plugin.version>2.2.3</jdocbook.plugin.version>
+      <jetty.plugin.version>6.1.21</jetty.plugin.version>
+      <junction.plugin.version>1.0.3</junction.plugin.version>
+      <nexus.plugin.version>1.3.2.1</nexus.plugin.version>
+      <release.version>2.2.1</release.version>
+      <remote.resources.version>1.1</remote.resources.version>
+      <resources.plugin.version>2.4.3</resources.plugin.version>
+      <scm.plugin.version>1.4</scm.plugin.version>
+      <selenium.plugin.version>1.0.1</selenium.plugin.version>
+      <site.plugin.version>2.0.1</site.plugin.version>
+      <shade.plugin.version>2.0</shade.plugin.version>
+      <source.plugin.version>2.1.2</source.plugin.version>
+      <surefire.version>2.17</surefire.version>
+      <tomcat.plugin.version>1.0-beta-1</tomcat.plugin.version>
+      <war.plugin.version>2.1-beta-1</war.plugin.version>
 
       <!-- ***************** -->
       <!-- Repository Deployment URLs -->
@@ -87,7 +131,7 @@
          </plugin>
          <plugin>
             <artifactId>maven-remote-resources-plugin</artifactId>
-            <version>1.1</version>
+            <version>${remote.resources.version}</version>
             <executions>
                <execution>
                   <id>attach-license</id>
@@ -113,12 +157,12 @@
             <plugin>
                <groupId>ch.qos.cal10n.plugins</groupId>
                <artifactId>maven-cal10n-plugin</artifactId>
-               <version>0.8.1</version>
+               <version>${cal10n.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.jboss.maven.plugins</groupId>
                <artifactId>maven-jdocbook-plugin</artifactId>
-               <version>2.2.3</version>
+               <version>${jdocbook.plugin.version}</version>
                <extensions>true</extensions>
                <dependencies>
                   <dependency>
@@ -182,7 +226,7 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-antrun-plugin</artifactId>
-               <version>1.3</version>
+               <version>${antrun.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
@@ -206,17 +250,17 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-clean-plugin</artifactId>
-               <version>2.4.1</version>
+               <version>${clean.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-deploy-plugin</artifactId>
-               <version>2.5</version>
+               <version>${deploy.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-assembly-plugin</artifactId>
-               <version>2.2-beta-5</version>
+               <version>${assembly.plugin.version}</version>
                <executions>
                   <execution>
                      <id>distribution</id>
@@ -236,32 +280,32 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-install-plugin</artifactId>
-               <version>2.3.1</version>
+               <version>${install.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-site-plugin</artifactId>
-               <version>2.0.1</version>
+               <version>${site.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-source-plugin</artifactId>
-               <version>2.1.2</version>
+               <version>${source.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-resources-plugin</artifactId>
-               <version>2.4.3</version>
+               <version>${resources.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-dependency-plugin</artifactId>
-               <version>2.1</version>
+               <version>${dependency.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-javadoc-plugin</artifactId>
-               <version>2.7</version>
+               <version>${javadoc.plugin.version}</version>
                <configuration>
                   <keywords>true</keywords>
                </configuration>
@@ -269,22 +313,22 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-gpg-plugin</artifactId>
-               <version>1.4</version>
+               <version>${gpg.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.felix</groupId>
                <artifactId>maven-bundle-plugin</artifactId>
-               <version>2.1.0</version>
+               <version>${bundle.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>exec-maven-plugin</artifactId>
-               <version>1.1.1</version>
+               <version>${exec.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-enforcer-plugin</artifactId>
-               <version>1.0-beta-1</version>
+               <version>${enforcer.plugin.version}</version>
                <executions>
                   <execution>
                      <id>enforce</id>
@@ -310,21 +354,21 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-shade-plugin</artifactId>
-               <version>2.0</version>
+               <version>${shade.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-compiler-plugin</artifactId>
                <version>${compiler.version}</version>
                <configuration>
-                  <source>1.6</source>
-                  <target>1.6</target>
+                  <source>${maven.compiler.source}</source>
+                  <target>${maven.compiler.target}</target>
                </configuration>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-jar-plugin</artifactId>
-               <version>2.3.1</version>
+               <version>${jar.plugin.version}</version>
                <configuration>
                   <archive>
                      <manifestEntries>
@@ -357,7 +401,7 @@
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>build-helper-maven-plugin</artifactId>
-               <version>1.5</version>
+               <version>${build.helper.plugin.version}</version>
                <executions>
                   <execution>
                      <phase>validate</phase>
@@ -380,7 +424,7 @@
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>buildnumber-maven-plugin</artifactId>
-               <version>1.2</version>
+               <version>${buildnumber.plugin.version}</version>
                <executions>
                   <execution>
                      <id>set-build-properties</id>
@@ -399,12 +443,12 @@
             <plugin>
                <groupId>org.twdata.maven</groupId>
                <artifactId>maven-cli-plugin</artifactId>
-               <version>1.0.3</version>
+               <version>${cli.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.glassfish</groupId>
                <artifactId>maven-embedded-glassfish-plugin</artifactId>
-               <version>3.0</version>
+               <version>${embedded.glassfish.plugin.version}</version>
                <configuration>
                   <goalPrefix>glassfish</goalPrefix>
                   <app>${project.build.directory}/${project.build.finalName}.war</app>
@@ -423,7 +467,7 @@
             <plugin>
                <groupId>org.mortbay.jetty</groupId>
                <artifactId>maven-jetty-plugin</artifactId>
-               <version>6.1.21</version>
+               <version>${jetty.plugin.version}</version>
                <configuration>
                   <!-- Delete this block to have Jetty run default port (8080) -->
                   <connectors>
@@ -452,7 +496,7 @@
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>tomcat-maven-plugin</artifactId>
-               <version>1.0-beta-1</version>
+               <version>${tomcat.plugin.version}</version>
                <inherited>true</inherited>
                <configuration>
                   <path>/${project.build.finalName}</path>
@@ -471,7 +515,7 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-war-plugin</artifactId>
-               <version>2.1-beta-1</version>
+               <version>${war.plugin.version}</version>
                <inherited>true</inherited>
                <configuration>
                   <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -481,22 +525,22 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-ejb-plugin</artifactId>
-               <version>2.2.1</version>
+               <version>${ejb.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-ear-plugin</artifactId>
-               <version>2.4.2</version>
+               <version>${ear.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>com.pyx4j</groupId>
                <artifactId>maven-junction-plugin</artifactId>
-               <version>1.0.3</version>
+               <version>${junction.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.sonatype.plugins</groupId>
                <artifactId>nexus-maven-plugin</artifactId>
-               <version>1.3.2.1</version>
+               <version>${nexus.plugin.version}</version>
                <configuration>
                   <nexusUrl>https://repository.jboss.org/nexus</nexusUrl>
                   <serverAuthId>jboss-releases-repository</serverAuthId>
@@ -505,28 +549,28 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-archetype-plugin</artifactId>
-               <version>2.0-alpha-5</version>
+               <version>${archetype.plugin.version}</version>
                <extensions>true</extensions>
             </plugin>
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>jboss-maven-plugin</artifactId>
-               <version>1.4</version>
+               <version>${jboss.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>emma-maven-plugin</artifactId>
-               <version>1.0-alpha-2</version>
+               <version>${emma.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.sonatype.maven.plugin</groupId>
                <artifactId>emma4it-maven-plugin</artifactId>
-               <version>1.3</version>
+               <version>${emma4it.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>findbugs-maven-plugin</artifactId>
-               <version>2.3.1</version>
+               <version>${findbugs.plugin.version}</version>
                <configuration>
                   <effort>Max</effort>
                   <threshold>Low</threshold>
@@ -544,22 +588,22 @@
             <plugin>
                <groupId>org.codehaus.cargo</groupId>
                <artifactId>cargo-maven2-plugin</artifactId>
-               <version>1.0.1</version>
+               <version>${cargo.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>selenium-maven-plugin</artifactId>
-               <version>1.0.1</version>
+               <version>${selenium.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>failsafe-maven-plugin</artifactId>
-               <version>2.4.3-alpha-1</version>
+               <version>${failsafe.plugin.version}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-scm-plugin</artifactId>
-               <version>1.4</version>
+               <version>${scm.plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
