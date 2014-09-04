@@ -42,7 +42,7 @@
       <seam.docbook.version>1.1.0.GA</seam.docbook.version>
       <jbossorg.docbook.version>1.1.0</jbossorg.docbook.version>
       <build.config.version>1</build.config.version>
-      <maven.scm.provider.gitexe>1.4</maven.scm.provider.gitexe>
+      <maven.scm.provider.gitexe>1.9.1</maven.scm.provider.gitexe>
 
       <!-- plugin versions -->
       <antrun.plugin.version>1.3</antrun.plugin.version>
@@ -77,10 +77,10 @@
       <jetty.plugin.version>6.1.21</jetty.plugin.version>
       <junction.plugin.version>1.0.3</junction.plugin.version>
       <nexus.plugin.version>1.3.2.1</nexus.plugin.version>
-      <release.version>2.2.1</release.version>
+      <release.version>2.5</release.version>
       <remote.resources.version>1.1</remote.resources.version>
       <resources.plugin.version>2.4.3</resources.plugin.version>
-      <scm.plugin.version>1.4</scm.plugin.version>
+      <scm.plugin.version>1.9.1</scm.plugin.version>
       <selenium.plugin.version>1.0.1</selenium.plugin.version>
       <site.plugin.version>2.0.1</site.plugin.version>
       <shade.plugin.version>2.0</shade.plugin.version>
