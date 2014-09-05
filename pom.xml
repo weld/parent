@@ -239,6 +239,7 @@
                <configuration>
                   <arguments>-Drelease -Dscm.plugin.version=${scm.plugin.version} -Dmaven.scm.provider.gitexe=${maven.scm.provider.gitexe}</arguments>
                   <autoVersionSubmodules>true</autoVersionSubmodules>
+                  <pushChanges>false</pushChanges>
                </configuration>
                <version>${release.version}</version>
                <dependencies>
