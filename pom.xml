@@ -36,6 +36,8 @@
       <minimum.maven.version>3.0.3</minimum.maven.version>
       <maven.compiler.source>1.6</maven.compiler.source>
       <maven.compiler.target>1.6</maven.compiler.target>
+      <!-- Suppress strict JavaDoc validation -->
+      <!-- http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html -->
       <javadoc.doclint>-Xdoclint:none</javadoc.doclint>
 
       <!-- dependency versions -->
