@@ -41,7 +41,7 @@
       <weld.docbook.version>1.1.1-Beta3</weld.docbook.version>
       <seam.docbook.version>1.1.0.GA</seam.docbook.version>
       <jbossorg.docbook.version>1.1.0</jbossorg.docbook.version>
-      <build.config.version>1</build.config.version>
+      <build.config.version>7</build.config.version>
       <maven.scm.provider.gitexe>1.9.1</maven.scm.provider.gitexe>
 
       <!-- plugin versions -->
@@ -53,7 +53,7 @@
       <bundle.plugin.version>2.1.0</bundle.plugin.version>
       <cal10n.plugin.version>0.8.1</cal10n.plugin.version>
       <cargo.plugin.version>1.0.1</cargo.plugin.version>
-      <checkstyle.version>2.10</checkstyle.version>
+      <checkstyle.version>2.12.1</checkstyle.version>
       <clean.plugin.version>2.4.1</clean.plugin.version>
       <cli.plugin.version>1.0.3</cli.plugin.version>
       <compiler.version>2.5.1</compiler.version>
