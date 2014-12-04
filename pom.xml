@@ -56,7 +56,8 @@
       <bundle.plugin.version>2.1.0</bundle.plugin.version>
       <cal10n.plugin.version>0.8.1</cal10n.plugin.version>
       <cargo.plugin.version>1.0.1</cargo.plugin.version>
-      <checkstyle.version>2.12.1</checkstyle.version>
+      <checkstyle.plugin.version>2.13</checkstyle.plugin.version>
+      <checkstyle.version>6.1.1</checkstyle.version>
       <clean.plugin.version>2.4.1</clean.plugin.version>
       <cli.plugin.version>1.0.3</cli.plugin.version>
       <compiler.version>2.5.1</compiler.version>
@@ -620,7 +621,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle.version}</version>
+                <version>${checkstyle.plugin.version}</version>
                 <configuration>
                     <configLocation>weld-checkstyle/checkstyle.xml</configLocation>
                     <suppressionsLocation>weld-checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
@@ -633,6 +634,11 @@
                         <groupId>org.jboss.weld</groupId>
                         <artifactId>weld-common-build-config</artifactId>
                         <version>${build.config.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${checkstyle.version}</version>
                     </dependency>
                 </dependencies>
                 <executions>
