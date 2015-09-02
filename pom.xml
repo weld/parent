@@ -40,6 +40,12 @@
       <!-- http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html -->
       <javadoc.doclint>-Xdoclint:none</javadoc.doclint>
 
+      <!-- This information is not entirely correct -->
+      <!-- See also https://issues.jboss.org/browse/WELD-2016 -->
+      <manifest.specification.title>JSR-346 Contexts and Dependency Injection for the Java EE platform</manifest.specification.title>
+      <!-- This should be a sequence of nonnegative decimal integers separated by "." -->
+      <manifest.specification.version>1.2</manifest.specification.version>
+
       <!-- dependency versions -->
       <weld.docbook.version>1.1.1-Beta3</weld.docbook.version>
       <seam.docbook.version>1.1.0.GA</seam.docbook.version>
@@ -385,13 +391,10 @@
                <configuration>
                   <archive>
                      <manifestEntries>
-                        <Implementation-URL>${project.url}</Implementation-URL>
                         <Implementation-Title>${project.name}</Implementation-Title>
-                        <Implementation-Version>${maven.build.timestamp}</Implementation-Version>
-                        <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-                        <Specification-Title>${project.name}</Specification-Title>
-                        <Specification-Version>${parsedVersion.osgiVersion}</Specification-Version>
-                        <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+                        <Implementation-Version>${parsedVersion.osgiVersion}</Implementation-Version>
+                        <Specification-Title>${manifest.specification.title}</Specification-Title>
+                        <Specification-Version>${manifest.specification.version}</Specification-Version>
                      </manifestEntries>
                      <manifestSections>
                         <manifestSection>
