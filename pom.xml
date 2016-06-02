@@ -16,7 +16,7 @@
    </description>
 
    <licenses>
-      <license>
+     <license>
          <name>Apache License, Version 2.0</name>
          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
       </license>
@@ -50,7 +50,7 @@
       <weld.docbook.version>1.1.1-Beta3</weld.docbook.version>
       <seam.docbook.version>1.1.0.GA</seam.docbook.version>
       <jbossorg.docbook.version>1.1.0</jbossorg.docbook.version>
-      <build.config.version>10-SNAPSHOT</build.config.version>
+      <build.config.version>10</build.config.version>
       <maven.scm.provider.gitexe>1.9.1</maven.scm.provider.gitexe>
 
       <!-- plugin versions -->
