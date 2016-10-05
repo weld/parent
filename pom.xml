@@ -173,15 +173,16 @@
                <configuration>
                   <arguments>-Drelease -Dscm.plugin.version=${scm.plugin.version} -Dmaven.scm.provider.gitexe=${maven.scm.provider.gitexe}</arguments>
                   <autoVersionSubmodules>true</autoVersionSubmodules>
+                  <pushChanges>false</pushChanges>
                </configuration>
                <version>${release.version}</version>
                <dependencies>
                   <dependency>
-                  <groupId>org.apache.maven.scm</groupId>
-                  <artifactId>maven-scm-provider-gitexe</artifactId>
-                  <version>${maven.scm.provider.gitexe}</version>
-               </dependency>
-       </dependencies>
+                     <groupId>org.apache.maven.scm</groupId>
+                     <artifactId>maven-scm-provider-gitexe</artifactId>
+                     <version>${maven.scm.provider.gitexe}</version>
+                  </dependency>
+               </dependencies>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
@@ -512,37 +513,37 @@
                <version>${scm.plugin.version}</version>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle.plugin.version}</version>
-                <configuration>
-                    <configLocation>weld-checkstyle/checkstyle.xml</configLocation>
-                    <suppressionsLocation>weld-checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <useFile />
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.jboss.weld</groupId>
-                        <artifactId>weld-common-build-config</artifactId>
-                        <version>${build.config.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${checkstyle.version}</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>check-style</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>checkstyle</goal>
-                        </goals>
-                    </execution>
-                </executions>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-checkstyle-plugin</artifactId>
+               <version>${checkstyle.plugin.version}</version>
+               <configuration>
+                  <configLocation>weld-checkstyle/checkstyle.xml</configLocation>
+                  <suppressionsLocation>weld-checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+                  <consoleOutput>true</consoleOutput>
+                  <failsOnError>true</failsOnError>
+                  <useFile/>
+               </configuration>
+               <dependencies>
+                  <dependency>
+                     <groupId>org.jboss.weld</groupId>
+                     <artifactId>weld-common-build-config</artifactId>
+                     <version>${build.config.version}</version>
+                  </dependency>
+                  <dependency>
+                     <groupId>com.puppycrawl.tools</groupId>
+                     <artifactId>checkstyle</artifactId>
+                     <version>${checkstyle.version}</version>
+                  </dependency>
+               </dependencies>
+               <executions>
+                  <execution>
+                     <id>check-style</id>
+                     <phase>compile</phase>
+                     <goals>
+                        <goal>checkstyle</goal>
+                     </goals>
+                  </execution>
+               </executions>
             </plugin>
          </plugins>
       </pluginManagement>
@@ -673,8 +674,8 @@
       <connection>scm:git:git@github.com:weld/parent.git</connection>
       <developerConnection>scm:git:git@github.com:weld/parent.git</developerConnection>
       <url>scm:git:git@github.com:weld/parent.git</url>
-     <tag>HEAD</tag>
-  </scm>
+      <tag>HEAD</tag>
+   </scm>
 
    <distributionManagement>
       <repository>
