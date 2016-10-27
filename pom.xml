@@ -319,22 +319,15 @@
                         <Implementation-Version>${parsedVersion.osgiVersion}</Implementation-Version>
                         <Specification-Title>${manifest.specification.title}</Specification-Title>
                         <Specification-Version>${manifest.specification.version}</Specification-Version>
+                        <Maven-Version>${maven.version}</Maven-Version>
+                        <Java-Version>${java.version}</Java-Version>
+                        <Java-Vendor>${java.vendor}</Java-Vendor>
+                        <Os-Name>${os.name}</Os-Name>
+                        <Os-Arch>${os.arch}</Os-Arch>
+                        <Os-Version>${os.version}</Os-Version>
+                        <SCM>${buildNumber}</SCM>
+                        <Build-Time>${maven.build.timestamp}</Build-Time>
                      </manifestEntries>
-                     <manifestSections>
-                        <manifestSection>
-                           <name>Build-Information</name>
-                           <manifestEntries>
-                              <Maven-Version>${maven.version}</Maven-Version>
-                              <Java-Version>${java.version}</Java-Version>
-                              <Java-Vendor>${java.vendor}</Java-Vendor>
-                              <Os-Name>${os.name}</Os-Name>
-                              <Os-Arch>${os.arch}</Os-Arch>
-                              <Os-Version>${os.version}</Os-Version>
-                              <SCM>${buildNumber}</SCM>
-                              <Build-Time>${maven.build.timestamp}</Build-Time>
-                           </manifestEntries>
-                        </manifestSection>
-                     </manifestSections>
                   </archive>
                </configuration>
             </plugin>
