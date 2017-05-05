@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.jboss.weld</groupId>
    <artifactId>weld-parent</artifactId>
@@ -16,7 +17,7 @@
    </description>
 
    <licenses>
-     <license>
+      <license>
          <name>Apache License, Version 2.0</name>
          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
       </license>
@@ -42,8 +43,10 @@
 
       <!-- This information is not entirely correct -->
       <!-- See also https://issues.jboss.org/browse/WELD-2016 -->
-      <manifest.specification.title>JSR-346 Contexts and Dependency Injection for the Java EE platform</manifest.specification.title>
-      <!-- This should be a sequence of nonnegative decimal integers separated by "." -->
+      <manifest.specification.title>JSR-346 Contexts and Dependency
+         Injection for the Java EE platform</manifest.specification.title>
+      <!-- This should be a sequence of nonnegative decimal integers separated
+         by "." -->
       <manifest.specification.version>1.2</manifest.specification.version>
 
       <!-- dependency versions -->
@@ -95,6 +98,8 @@
       <!-- ***************** -->
       <jboss.releases.repo.url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</jboss.releases.repo.url>
       <jboss.snapshots.repo.url>https://repository.jboss.org/nexus/content/repositories/snapshots/</jboss.snapshots.repo.url>
+      <osshr.releases.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2</osshr.releases.repo.url>
+      <osshr.snapshots.repo.url>https://oss.sonatype.org/content/repositories/snapshots</osshr.snapshots.repo.url>
       <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
    </properties>
 
@@ -177,11 +182,11 @@
                <version>${release.version}</version>
                <dependencies>
                   <dependency>
-                  <groupId>org.apache.maven.scm</groupId>
-                  <artifactId>maven-scm-provider-gitexe</artifactId>
-                  <version>${maven.scm.provider.gitexe}</version>
-               </dependency>
-       </dependencies>
+                     <groupId>org.apache.maven.scm</groupId>
+                     <artifactId>maven-scm-provider-gitexe</artifactId>
+                     <version>${maven.scm.provider.gitexe}</version>
+                  </dependency>
+               </dependencies>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
@@ -390,22 +395,19 @@
                <configuration>
                   <!-- Delete this block to have Jetty run default port (8080) -->
                   <connectors>
-                     <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                     <connector
+                        implementation="org.mortbay.jetty.nio.SelectChannelConnector">
                         <port>9090</port>
                      </connector>
                   </connectors>
                   <!-- force friendly name instead of artifact name + version -->
                   <contextPath>${project.build.finalName}</contextPath>
-                  <!--
-                     Where the BeanManager is constructed. This is where
-                     you'll declare datasources.
-                  -->
+                  <!-- Where the BeanManager is constructed. This is where
+                     you'll declare datasources. -->
                   <jettyEnvXml>${basedir}/src/main/resources/jetty-env.xml</jettyEnvXml>
                   <!-- This parameter will auto-deploy modified classes. -->
-                  <!--
-                     You can save changes in a file or class and refresh
-                     your browser to view the changes.
-                  -->
+                  <!-- You can save changes in a file or class and refresh
+                     your browser to view the changes. -->
                   <scanIntervalSeconds>3</scanIntervalSeconds>
                </configuration>
             </plugin>
@@ -421,13 +423,9 @@
                   <path>/${project.build.finalName}</path>
                   <!-- Embedded port -->
                   <port>6060</port>
-                  <!--
-                     The default authentication credentials for remote
-                     deployment are username "admin" with no password To
-                     override credentials, define a server in
-                     settings.xml and activate it using the <server>
-                     element
-                  -->
+                  <!-- The default authentication credentials for remote
+                     deployment are username "admin" with no password To override credentials,
+                     define a server in settings.xml and activate it using the <server> element -->
                   <url>http://localhost:8080/manager</url>
                </configuration>
             </plugin>
@@ -505,37 +503,37 @@
                <version>${scm.plugin.version}</version>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle.plugin.version}</version>
-                <configuration>
-                    <configLocation>weld-checkstyle/checkstyle.xml</configLocation>
-                    <suppressionsLocation>weld-checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <useFile />
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.jboss.weld</groupId>
-                        <artifactId>weld-common-build-config</artifactId>
-                        <version>${build.config.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${checkstyle.version}</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>check-style</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>checkstyle</goal>
-                        </goals>
-                    </execution>
-                </executions>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-checkstyle-plugin</artifactId>
+               <version>${checkstyle.plugin.version}</version>
+               <configuration>
+                  <configLocation>weld-checkstyle/checkstyle.xml</configLocation>
+                  <suppressionsLocation>weld-checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+                  <consoleOutput>true</consoleOutput>
+                  <failsOnError>true</failsOnError>
+                  <useFile />
+               </configuration>
+               <dependencies>
+                  <dependency>
+                     <groupId>org.jboss.weld</groupId>
+                     <artifactId>weld-common-build-config</artifactId>
+                     <version>${build.config.version}</version>
+                  </dependency>
+                  <dependency>
+                     <groupId>com.puppycrawl.tools</groupId>
+                     <artifactId>checkstyle</artifactId>
+                     <version>${checkstyle.version}</version>
+                  </dependency>
+               </dependencies>
+               <executions>
+                  <execution>
+                     <id>check-style</id>
+                     <phase>compile</phase>
+                     <goals>
+                        <goal>checkstyle</goal>
+                     </goals>
+                  </execution>
+               </executions>
             </plugin>
          </plugins>
       </pluginManagement>
@@ -658,29 +656,59 @@
             </pluginManagement>
          </build>
       </profile>
+      <!-- JBoss release repository -->
+      <profile>
+         <id>jboss-release-repo</id>
+         <activation>
+            <activeByDefault>false</activeByDefault>
+            <property>
+               <name>jboss-release-repo</name>
+               <value>true</value>
+            </property>
+         </activation>
+         <distributionManagement>
+            <repository>
+               <id>jboss-releases-repository</id>
+               <name>JBoss Releases Repository</name>
+               <url>${jboss.releases.repo.url}</url>
+            </repository>
+            <snapshotRepository>
+               <id>jboss-snapshots-repository</id>
+               <name>JBoss Snapshots Repository</name>
+               <url>${jboss.snapshots.repo.url}</url>
+            </snapshotRepository>
+         </distributionManagement>
+      </profile>
+      <!-- OSSRH release repository - selected by default -->
+      <profile>
+         <id>osshr-release-repo</id>
+         <activation>
+            <activeByDefault>false</activeByDefault>
+            <property>
+               <name>!jboss-release-repo</name>
+            </property>
+         </activation>
+         <distributionManagement>
+            <snapshotRepository>
+               <id>sonatype-nexus-snapshots</id>
+               <name>Sonatype Nexus Snapshots</name>
+               <url>${osshr.snapshots.repo.url}</url>
+            </snapshotRepository>
+            <repository>
+               <id>sonatype-nexus-staging</id>
+               <name>Nexus Release Repository</name>
+               <url>${osshr.releases.repo.url}</url>
+            </repository>
+         </distributionManagement>
+      </profile>
    </profiles>
 
    <!-- SCM and Distribution Management -->
-
    <scm>
       <connection>scm:git:git@github.com:weld/parent.git</connection>
       <developerConnection>scm:git:git@github.com:weld/parent.git</developerConnection>
       <url>scm:git:git@github.com:weld/parent.git</url>
-     <tag>HEAD</tag>
-  </scm>
-
-   <distributionManagement>
-      <repository>
-         <id>jboss-releases-repository</id>
-         <name>JBoss Releases Repository</name>
-         <url>${jboss.releases.repo.url}</url>
-      </repository>
-      <snapshotRepository>
-         <id>jboss-snapshots-repository</id>
-         <name>JBoss Snapshots Repository</name>
-         <url>${jboss.snapshots.repo.url}</url>
-      </snapshotRepository>
-   </distributionManagement>
-
+      <tag>HEAD</tag>
+   </scm>
 
 </project>
