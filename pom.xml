@@ -55,7 +55,7 @@
       <!-- plugin versions -->
       <antrun.plugin.version>1.8</antrun.plugin.version>
       <archetype.plugin.version>2.4</archetype.plugin.version>
-      <assembly.plugin.version>2.6</assembly.plugin.version>
+      <assembly.plugin.version>3.1.0</assembly.plugin.version>
       <build.helper.plugin.version>1.12</build.helper.plugin.version>
       <buildnumber.plugin.version>1.4</buildnumber.plugin.version>
       <bundle.plugin.version>3.2.0</bundle.plugin.version>
@@ -646,7 +646,7 @@
                      <artifactId>maven-surefire-plugin</artifactId>
                      <inherited>true</inherited>
                      <configuration>
-                        <forkMode>once</forkMode>
+                        <forkCount>1</forkCount>
                         <classesDirectory>${project.build.directory}/generated-classes/emma/classes</classesDirectory>
                      </configuration>
                   </plugin>
