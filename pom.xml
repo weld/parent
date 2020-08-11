@@ -67,44 +67,41 @@
 
       <!-- plugin versions -->
       <antrun.plugin.version>1.8</antrun.plugin.version>
-      <archetype.plugin.version>2.4</archetype.plugin.version>
-      <assembly.plugin.version>3.1.0</assembly.plugin.version>
+      <archetype.plugin.version>3.0.1</archetype.plugin.version>
+      <assembly.plugin.version>3.2.0</assembly.plugin.version>
       <build.helper.plugin.version>1.12</build.helper.plugin.version>
       <buildnumber.plugin.version>1.4</buildnumber.plugin.version>
-      <bundle.plugin.version>3.2.0</bundle.plugin.version>
-      <cargo.plugin.version>1.5.0</cargo.plugin.version>
-      <checkstyle.plugin.version>3.1.0</checkstyle.plugin.version>
-      <checkstyle.version>8.29</checkstyle.version>
-      <clean.plugin.version>3.0.0</clean.plugin.version>
+      <bundle.plugin.version>4.2.1</bundle.plugin.version>
+      <cargo.plugin.version>1.7.4</cargo.plugin.version>
+      <checkstyle.plugin.version>3.1.1</checkstyle.plugin.version>
+      <checkstyle.version>8.34</checkstyle.version>
+      <clean.plugin.version>3.1.0</clean.plugin.version>
       <compiler.version>3.8.0-jboss-2</compiler.version>
-      <dependency.plugin.version>2.10</dependency.plugin.version>
+      <dependency.plugin.version>3.1.1</dependency.plugin.version>
       <deploy.plugin.version>2.8.2</deploy.plugin.version>
-      <embedded.glassfish.plugin.version>3.1.1</embedded.glassfish.plugin.version>
-      <ear.plugin.version>3.0.0</ear.plugin.version>
-      <enforcer.plugin.version>1.4.1</enforcer.plugin.version>
-      <ejb.plugin.version>3.0.0</ejb.plugin.version>
-      <exec.plugin.version>1.5.0</exec.plugin.version>
-      <findbugs.plugin.version>3.0.4</findbugs.plugin.version>
-      <gmavenplus.plugin.version>1.6</gmavenplus.plugin.version>
+      <ear.plugin.version>3.0.1</ear.plugin.version>
+      <enforcer.plugin.version>3.0.0-M3</enforcer.plugin.version>
+      <ejb.plugin.version>3.1.0</ejb.plugin.version>
+      <exec.plugin.version>3.0.0</exec.plugin.version>
+      <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
+      <gmavenplus.plugin.version>1.7.1</gmavenplus.plugin.version>
       <gpg.plugin.version>1.6</gpg.plugin.version>
       <install.plugin.version>2.5.2</install.plugin.version>
-      <jar.plugin.version>3.0.2</jar.plugin.version>
-      <javadoc.plugin.version>2.10.4</javadoc.plugin.version>
+      <jar.plugin.version>3.2.0</jar.plugin.version>
+      <javadoc.plugin.version>3.2.0</javadoc.plugin.version>
       <jboss.plugin.version>1.5.0</jboss.plugin.version>
       <jdocbook.plugin.version>2.3.10</jdocbook.plugin.version>
-      <jetty.plugin.version>6.1.26</jetty.plugin.version>
       <nexus.plugin.version>2.1</nexus.plugin.version>
       <release.version>2.5.3</release.version>
-      <remote.resources.version>1.5</remote.resources.version>
-      <resources.plugin.version>3.0.1</resources.plugin.version>
+      <remote.resources.version>1.6.0</remote.resources.version>
+      <resources.plugin.version>3.1.0</resources.plugin.version>
       <scm.plugin.version>1.9.5</scm.plugin.version>
       <selenium.plugin.version>2.3</selenium.plugin.version>
-      <site.plugin.version>3.5.1</site.plugin.version>
-      <shade.plugin.version>2.4.3</shade.plugin.version>
-      <source.plugin.version>3.0.1</source.plugin.version>
-      <surefire.version>2.22.0</surefire.version>
-      <tomcat.plugin.version>1.1</tomcat.plugin.version>
-      <war.plugin.version>3.2.0</war.plugin.version>
+      <site.plugin.version>3.8.2</site.plugin.version>
+      <shade.plugin.version>3.2.1</shade.plugin.version>
+      <source.plugin.version>3.2.1</source.plugin.version>
+      <surefire.version>2.19.1</surefire.version>
+      <war.plugin.version>3.2.3</war.plugin.version>
 
       <!-- ***************** -->
       <!-- Repository Deployment URLs -->
@@ -117,7 +114,7 @@
    </properties>
 
    <prerequisites>
-      <maven>3.0</maven>
+      <maven>3.6</maven>
    </prerequisites>
 
 
@@ -272,7 +269,10 @@
                <version>${javadoc.plugin.version}</version>
                <configuration>
                   <keywords>true</keywords>
-                  <additionalparam>${javadoc.doclint}</additionalparam>
+                  <additionalOptions>
+                     <additionalOption>${javadoc.doclint}</additionalOption>
+                  </additionalOptions>
+                  <source>8</source>
                </configuration>
             </plugin>
             <plugin>
@@ -394,65 +394,6 @@
                   </execution>
                </executions>
                <inherited>true</inherited>
-            </plugin>
-            <plugin>
-               <groupId>org.glassfish</groupId>
-               <artifactId>maven-embedded-glassfish-plugin</artifactId>
-               <version>${embedded.glassfish.plugin.version}</version>
-               <configuration>
-                  <goalPrefix>glassfish</goalPrefix>
-                  <app>${project.build.directory}/${project.build.finalName}.war</app>
-                  <port>7070</port>
-                  <contextRoot>${project.build.finalName}</contextRoot>
-               </configuration>
-               <executions>
-                  <execution>
-                     <phase>install</phase>
-                     <goals>
-                        <goal>run</goal>
-                     </goals>
-                  </execution>
-               </executions>
-            </plugin>
-            <plugin>
-               <groupId>org.mortbay.jetty</groupId>
-               <artifactId>maven-jetty-plugin</artifactId>
-               <version>${jetty.plugin.version}</version>
-               <configuration>
-                  <!-- Delete this block to have Jetty run default port (8080) -->
-                  <connectors>
-                     <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                        <port>9090</port>
-                     </connector>
-                  </connectors>
-                  <!-- force friendly name instead of artifact name + version -->
-                  <contextPath>${project.build.finalName}</contextPath>
-                  <!-- Where the BeanManager is constructed. This is where
-                     you'll declare datasources. -->
-                  <jettyEnvXml>${basedir}/src/main/resources/jetty-env.xml</jettyEnvXml>
-                  <!-- This parameter will auto-deploy modified classes. -->
-                  <!-- You can save changes in a file or class and refresh
-                     your browser to view the changes. -->
-                  <scanIntervalSeconds>3</scanIntervalSeconds>
-               </configuration>
-            </plugin>
-
-            <!-- Embedded Tomcat (package tomcat:run) -->
-            <!-- Standalone Tomcat (package tomcat:deploy) -->
-            <plugin>
-               <groupId>org.codehaus.mojo</groupId>
-               <artifactId>tomcat-maven-plugin</artifactId>
-               <version>${tomcat.plugin.version}</version>
-               <inherited>true</inherited>
-               <configuration>
-                  <path>/${project.build.finalName}</path>
-                  <!-- Embedded port -->
-                  <port>6060</port>
-                  <!-- The default authentication credentials for remote
-                     deployment are username "admin" with no password To override credentials,
-                     define a server in settings.xml and activate it using the <server> element -->
-                  <url>http://localhost:8080/manager</url>
-               </configuration>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
@@ -734,7 +675,6 @@
 
       <!-- Following are profiles dedicated to MR JAR builds and testing -->
       <!-- Taken from JBoss Parent POM, see https://github.com/jboss/jboss-parent-pom/blob/jboss-parent-36/pom.xml -->
-<!--      TODO - in theory we only need profiles for JDK 8 and JDK 9+? -->
       <profile>
          <id>compile-java8-release-flag</id>
          <activation>
