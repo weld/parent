@@ -94,7 +94,7 @@
       <nexus.plugin.version>2.1</nexus.plugin.version>
       <release.version>2.5.3</release.version>
       <remote.resources.version>1.6.0</remote.resources.version>
-      <resources.plugin.version>3.1.0</resources.plugin.version>
+      <resources.plugin.version>3.2.0</resources.plugin.version>
       <scm.plugin.version>1.9.5</scm.plugin.version>
       <selenium.plugin.version>2.3</selenium.plugin.version>
       <site.plugin.version>3.8.2</site.plugin.version>
