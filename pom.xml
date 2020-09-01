@@ -66,7 +66,7 @@
       <maven.scm.provider.gitexe>1.9.5</maven.scm.provider.gitexe>
 
       <!-- plugin versions -->
-      <antrun.plugin.version>1.8</antrun.plugin.version>
+      <antrun.plugin.version>3.0.0</antrun.plugin.version>
       <archetype.plugin.version>3.2.0</archetype.plugin.version>
       <assembly.plugin.version>3.2.0</assembly.plugin.version>
       <build.helper.plugin.version>3.2.0</build.helper.plugin.version>
