@@ -90,7 +90,6 @@
       <jar.plugin.version>3.2.0</jar.plugin.version>
       <javadoc.plugin.version>3.2.0</javadoc.plugin.version>
       <jboss.plugin.version>1.5.0</jboss.plugin.version>
-      <jdocbook.plugin.version>2.3.10</jdocbook.plugin.version>
       <nexus.plugin.version>2.1</nexus.plugin.version>
       <release.version>2.5.3</release.version>
       <remote.resources.version>1.7.0</remote.resources.version>
@@ -172,12 +171,6 @@
       <pluginManagement>
          <plugins>
             <plugin>
-               <groupId>org.jboss.maven.plugins</groupId>
-               <artifactId>maven-jdocbook-plugin</artifactId>
-               <version>${jdocbook.plugin.version}</version>
-               <extensions>true</extensions>
-            </plugin>
-            <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-antrun-plugin</artifactId>
                <version>${antrun.plugin.version}</version>
@@ -194,6 +187,11 @@
                   <dependency>
                      <groupId>org.apache.maven.scm</groupId>
                      <artifactId>maven-scm-provider-gitexe</artifactId>
+                     <version>${maven.scm.provider.gitexe}</version>
+                  </dependency>
+                  <dependency>
+                     <groupId>org.apache.maven.scm</groupId>
+                     <artifactId>maven-scm-api</artifactId>
                      <version>${maven.scm.provider.gitexe}</version>
                   </dependency>
                </dependencies>
