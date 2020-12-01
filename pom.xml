@@ -84,7 +84,7 @@
       <ejb.plugin.version>3.1.0</ejb.plugin.version>
       <exec.plugin.version>3.0.0</exec.plugin.version>
       <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
-      <gmavenplus.plugin.version>1.11.0</gmavenplus.plugin.version>
+      <gmavenplus.plugin.version>1.11.1</gmavenplus.plugin.version>
       <gpg.plugin.version>1.6</gpg.plugin.version>
       <install.plugin.version>2.5.2</install.plugin.version>
       <jar.plugin.version>3.2.0</jar.plugin.version>
