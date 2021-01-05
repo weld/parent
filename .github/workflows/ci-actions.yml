@@ -5,58 +5,13 @@ on:
     branches: [ master ]
 env:
   WFLY_EE8: https://ci.wildfly.org/guestAuth/repository/download/WF_Nightly/latest.lastSuccessful/wildfly-latest-SNAPSHOT.zip
-  # TODO replace with actual EE9 variant
-  WFLY_EE9: https://ci.wildfly.org/guestAuth/repository/download/WF_Nightly/latest.lastSuccessful/wildfly-latest-SNAPSHOT.zip
+  WFLY_EE9: https://ci.wildfly.org/guestAuth/repository/download/WF_WildflyPreviewNightly/latest.lastSuccessful/wildfly-preview-latest-SNAPSHOT.zip
 
 jobs:
-  # Job is to be removed once there is a stable nightly build of EE 9 WFLY
-  build-wfly-ee9:
-    name: "Build WFLY EE 9 version"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up JDK
-        uses: actions/setup-java@v1.4.3
-        with:
-          java-version: 11
-      - name: Checkout WFLY repo
-        uses: actions/checkout@v2
-        with:
-          repository: wildfly/wildfly
-          path: wildfly
-          ref: master
-      - name: Get Date
-        id: get-date
-        run: |
-          echo "::set-output name=date::$(/bin/date -u "+%Y-%m")"
-        shell: bash
-      - name: Cache Maven Repository
-        id: cache-maven
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          # special cache just for WFLY build not to bloat main build
-          key: wfly-maven-cache-${{ steps.get-date.outputs.date }}
-      - name: Build WFLY
-        run: |
-          cd wildfly
-          mvn clean install -DskipTests
-      - name: Zip Patched WildFly
-        run: |
-          cd wildfly/ee-9/dist/target
-          rm wildfly-preview-*.jar
-          mv wildfly-preview-* wildfly/
-          zip -r wildfly-ee9.zip wildfly
-      - name: Persist WildFly
-        uses: actions/upload-artifact@v1
-        with:
-          name: wildfly-snapshot-ee9-zip
-          path: wildfly/ee-9/dist/target/wildfly-ee9.zip
-
   # Preparation job that builds the cache, prepares snapshots and server
   build-jdk11:
     name: "Initial Weld ${{matrix.branch}} Build + WildFly patch"
     runs-on: ubuntu-latest
-    needs: build-wfly-ee9
     strategy:
       matrix:
         branch: [master, 3.1]
@@ -75,30 +30,24 @@ jobs:
         uses: actions/setup-java@v1.4.3
         with:
           java-version: 11
-      - name: Download WildFly EE 9
-        if: ${{matrix.branch == 'master'}}
-        uses: actions/download-artifact@v1
-        with:
-          name: wildfly-snapshot-ee9-zip
-          path: .
       - name: Download WildFly
         run: |
           cd $GITHUB_WORKSPACE
           if [[ ${{matrix.branch}} == 3.1 ]]
           then
             echo "Downloading WFLY for EE 8"
-            wget $WFLY_EE8
-            unzip wildfly-latest-SNAPSHOT.zip
-            # ZIP contains two more ZIPs, sources and actual WFLY
-            rm wildfly-*-src.zip
-            rm wildfly-latest-SNAPSHOT.zip
-            unzip wildfly-*.zip -d container
-            cd container
-            mv ./* wildfly/
+            wget $WFLY_EE8 -O wildfly-latest-SNAPSHOT.zip
           else
             echo "Downloading WFLY for EE 9"
-            unzip wildfly-ee9.zip -d container
+            wget $WFLY_EE9 -O wildfly-latest-SNAPSHOT.zip
           fi
+          unzip wildfly-latest-SNAPSHOT.zip
+          # ZIP contains two more ZIPs, sources and actual WFLY
+          rm wildfly-*-src.zip
+          rm wildfly-latest-SNAPSHOT.zip
+          unzip wildfly-*.zip -d container
+          cd container
+          mv ./* wildfly/
       - name: Get Date
         id: get-date
         run: |
