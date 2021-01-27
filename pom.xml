@@ -304,20 +304,6 @@
                <version>${enforcer.plugin.version}</version>
                <executions>
                   <execution>
-                     <id>enforce-java-version</id>
-                     <goals>
-                        <goal>enforce</goal>
-                     </goals>
-                     <configuration>
-                        <rules>
-                           <requireJavaVersion>
-                              <message>To build this project JDK ${jdk.min.version} (or greater) is required. Please install it.</message>
-                              <version>${jdk.min.version}</version>
-                           </requireJavaVersion>
-                        </rules>
-                     </configuration>
-                  </execution>
-                  <execution>
                      <id>enforce-maven-version</id>
                      <goals>
                         <goal>enforce</goal>
