@@ -84,7 +84,7 @@
       <bundle.plugin.version>5.1.1</bundle.plugin.version>
       <cargo.plugin.version>1.8.5</cargo.plugin.version>
       <checkstyle.plugin.version>3.1.1</checkstyle.plugin.version>
-      <checkstyle.version>8.39</checkstyle.version>
+      <checkstyle.version>8.40</checkstyle.version>
       <clean.plugin.version>3.1.0</clean.plugin.version>
       <compiler.version>3.8.1-jboss-1</compiler.version>
       <dependency.plugin.version>3.1.2</dependency.plugin.version>
