@@ -63,19 +63,19 @@ jobs:
           key: q2maven-${{matrix.branch}}-${{ steps.get-date.outputs.date }}
       - name: Build Weld Parent SNAPSHOT
         run: |
-          mvn clean install -DskipTests -B -V -f parent/pom.xml
+          mvn clean install -DskipTests -B -V -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f parent/pom.xml
       - name: Update Parent in Core and Build
         run: |
           PARENT_VERSION=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec -f parent/pom.xml)
           sed -i -e "/<parent>/,/<\/parent>/ s|<version>[0-9a-z.]\{1,\}</version>|<version>${PARENT_VERSION}</version>|g" core/pom.xml
           cd core
-          mvn clean install -DskipTests -B -V
+          mvn clean install -DskipTests -B -V -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120
           cd ..
       - name: Patch WildFly
         run: |
           JBOSS_HOME=`pwd`'/container/*'
           export JBOSS_HOME=`echo $JBOSS_HOME`
-          mvn clean package -Pupdate-jboss-as -Dtck -f core/jboss-as/pom.xml
+          mvn clean package -Pupdate-jboss-as -Dtck -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/jboss-as/pom.xml
       - name: Zip Patched WildFly
         run: |
           cd container/
@@ -152,7 +152,7 @@ jobs:
           sed -i -e "/<parent>/,/<\/parent>/ s|<version>[0-9a-z.]\{1,\}</version>|<version>${PARENT_VERSION}</version>|g" core/pom.xml
           JBOSS_HOME=`pwd`'/wildfly'
           export JBOSS_HOME=`echo $JBOSS_HOME`
-          mvn clean verify -Dincontainer -pl '!jboss-tck-runner,!impl' -f core/pom.xml
+          mvn clean verify -Dincontainer -pl '!jboss-tck-runner,!impl' -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/pom.xml
       - name: Prepare failure archive (if maven failed)
         if: failure()
         shell: bash
@@ -218,7 +218,7 @@ jobs:
           sed -i -e "/<parent>/,/<\/parent>/ s|<version>[0-9a-z.]\{1,\}</version>|<version>${PARENT_VERSION}</version>|g" core/pom.xml
           JBOSS_HOME=`pwd`'/wildfly'
           export JBOSS_HOME=`echo $JBOSS_HOME`
-          mvn clean verify -Dincontainer -f core/jboss-tck-runner/pom.xml
+          mvn clean verify -Dincontainer -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/jboss-tck-runner/pom.xml
       - name: Prepare failure archive (if maven failed)
         if: failure()
         shell: bash
@@ -275,7 +275,7 @@ jobs:
         run: |
           PARENT_VERSION=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec -f parent/pom.xml)
           sed -i -e "/<parent>/,/<\/parent>/ s|<version>[0-9a-z.]\{1,\}</version>|<version>${PARENT_VERSION}</version>|g" core/pom.xml
-          mvn clean verify -pl '!impl' -f core/pom.xml
+          mvn clean verify -pl '!impl' -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/pom.xml
           mvn surefire:test -f core/impl/pom.xml
       - name: Prepare failure archive (if maven failed)
         if: failure()
@@ -333,7 +333,7 @@ jobs:
         run: |
           PARENT_VERSION=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec -f parent/pom.xml)
           sed -i -e "/<parent>/,/<\/parent>/ s|<version>[0-9a-z.]\{1,\}</version>|<version>${PARENT_VERSION}</version>|g" core/pom.xml
-          mvn clean verify -Dincontainer=se -f core/jboss-tck-runner/pom.xml
+          mvn clean verify -Dincontainer=se -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/jboss-tck-runner/pom.xml
       - name: Prepare failure archive (if maven failed)
         if: failure()
         shell: bash
