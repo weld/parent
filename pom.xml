@@ -95,7 +95,7 @@
       <exec.plugin.version>3.0.0</exec.plugin.version>
       <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
       <gmavenplus.plugin.version>1.12.1</gmavenplus.plugin.version>
-      <gpg.plugin.version>1.6</gpg.plugin.version>
+      <gpg.plugin.version>3.0.1</gpg.plugin.version>
       <install.plugin.version>2.5.2</install.plugin.version>
       <jar.plugin.version>3.2.0</jar.plugin.version>
       <javadoc.plugin.version>3.2.0</javadoc.plugin.version>
