@@ -73,7 +73,7 @@
 
       <!-- dependency versions -->
       <build.config.version>13</build.config.version>
-      <maven.scm.provider.gitexe>1.11.2</maven.scm.provider.gitexe>
+      <maven.scm.provider.gitexe>1.12.0</maven.scm.provider.gitexe>
 
       <!-- plugin versions -->
       <antrun.plugin.version>3.0.0</antrun.plugin.version>
