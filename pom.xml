@@ -80,7 +80,7 @@
       <archetype.plugin.version>3.2.0</archetype.plugin.version>
       <assembly.plugin.version>3.3.0</assembly.plugin.version>
       <build.helper.plugin.version>3.2.0</build.helper.plugin.version>
-      <buildnumber.plugin.version>1.4</buildnumber.plugin.version>
+      <buildnumber.plugin.version>3.0.0</buildnumber.plugin.version>
       <bundle.plugin.version>5.1.2</bundle.plugin.version>
       <cargo.plugin.version>1.8.5</cargo.plugin.version>
       <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
