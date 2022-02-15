@@ -4,17 +4,14 @@ on:
   pull_request:
     branches: [ master ]
 env:
-  WFLY_EE8: https://ci.wildfly.org/guestAuth/repository/download/WF_Nightly/latest.lastSuccessful/wildfly-latest-SNAPSHOT.zip
-  WFLY_EE9: https://ci.wildfly.org/guestAuth/repository/download/WF_WildflyPreviewNightly/latest.lastSuccessful/wildfly-preview-latest-SNAPSHOT.zip
+  # TODO as of writing this the nightly build is working towards EE 10 but not yet there; we therefore skip incontainer testing ATM
+  WFLY_EE10: https://ci.wildfly.org/guestAuth/repository/download/WF_Nightly/latest.lastSuccessful/wildfly-latest-SNAPSHOT.zip
 
 jobs:
   # Preparation job that builds the cache, prepares snapshots and server
   build-jdk11:
-    name: "Initial Weld ${{matrix.branch}} Build + WildFly patch"
+    name: "Initial Weld Build + WildFly patch"
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        branch: [master, 3.1]
     steps:
       - name: Checkout Weld Parent repo
         uses: actions/checkout@v2
@@ -25,7 +22,6 @@ jobs:
         with:
           repository: weld/core
           path: core
-          ref: ${{matrix.branch}}
       - name: Set up JDK
         uses: actions/setup-java@v1.4.3
         with:
@@ -33,14 +29,7 @@ jobs:
       - name: Download WildFly
         run: |
           cd $GITHUB_WORKSPACE
-          if [[ ${{matrix.branch}} == 3.1 ]]
-          then
-            echo "Downloading WFLY for EE 8"
-            wget $WFLY_EE8 -O wildfly-latest-SNAPSHOT.zip
-          else
-            echo "Downloading WFLY for EE 9"
-            wget $WFLY_EE9 -O wildfly-latest-SNAPSHOT.zip
-          fi
+          wget $WFLY_EE10 -O wildfly-latest-SNAPSHOT.zip
           unzip wildfly-latest-SNAPSHOT.zip
           # ZIP contains two more ZIPs, sources and actual WFLY
           rm wildfly-*-src.zip
@@ -60,7 +49,7 @@ jobs:
           path: ~/.m2/repository
           # Caching is an automated pre/post action that installs the cache if the key exists and exports the cache
           # after the job is done. In this case we refresh the cache monthly (by changing key) to avoid unlimited growth.
-          key: q2maven-${{matrix.branch}}-${{ steps.get-date.outputs.date }}
+          key: q2maven-${{ steps.get-date.outputs.date }}
       - name: Build Weld Parent SNAPSHOT
         run: |
           mvn clean install -DskipTests -B -V -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f parent/pom.xml
@@ -84,7 +73,7 @@ jobs:
       - name: Persist WildFly
         uses: actions/upload-artifact@v1
         with:
-          name: wildfly-patched-${{matrix.branch}}-zip
+          name: wildfly-patched-zip
           path: container/wildfly.zip
       - name: Tar Maven Repo
         shell: bash
@@ -92,7 +81,7 @@ jobs:
       - name: Persist Maven Repo
         uses: actions/upload-artifact@v1
         with:
-          name: maven-repo-${{matrix.branch}}
+          name: maven-repo
           path: maven-repo.tgz
       - name: Delete Local Artifacts From Cache
         shell: bash
@@ -100,22 +89,23 @@ jobs:
 
   # Weld in-container tests, does NOT include TCKs which are run as a separate job
   incontainer-tests:
-    name: "Weld ${{matrix.branch}} In-container Tests - JDK ${{matrix.java.name}}"
+    name: "Weld In-container Tests - JDK ${{matrix.java.name}}"
     runs-on: ubuntu-latest
+    # TODO temporarily force-skip any in-container testing until we have a WFLY version that can execute it
+    if: "false"
     needs: build-jdk11
     timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
         java:
-          - { name: "8",
-              java-version: 8,
+          - { name: "11",
+              java-version: 11,
           }
           - {
-            name: "11",
-            java-version: 11,
+            name: "17",
+            java-version: 17,
           }
-        branch: [master, 3.1]
     steps:
       - name: Checkout Weld Parent repo
         uses: actions/checkout@v2
@@ -126,7 +116,6 @@ jobs:
         with:
           repository: weld/core
           path: core
-          ref: ${{matrix.branch}}
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v1.4.3
         with:
@@ -134,7 +123,7 @@ jobs:
       - name: Download Maven Repo
         uses: actions/download-artifact@v1
         with:
-          name: maven-repo-${{matrix.branch}}
+          name: maven-repo
           path: .
       - name: Extract Maven Repo
         shell: bash
@@ -142,7 +131,7 @@ jobs:
       - name: Download Patched WildFly
         uses: actions/download-artifact@v1
         with:
-          name: wildfly-patched-${{matrix.branch}}-zip
+          name: wildfly-patched-zip
           path: .
       - name: Extract WildFly
         run: unzip wildfly.zip
@@ -161,27 +150,28 @@ jobs:
         uses: actions/upload-artifact@v1
         if: failure()
         with:
-          name: test-reports-incontainer-jdk${{matrix.java.name}}-${{matrix.branch}}
+          name: test-reports-incontainer-jdk${{matrix.java.name}}
           path: 'test-reports.tgz'
 
   # CDI TCKs in WildFly
   CDI-TCK:
-    name: "Weld ${{matrix.branch}} CDI TCK - JDK ${{matrix.java.name}}"
+    name: "Weld CDI TCK - JDK ${{matrix.java.name}}"
     runs-on: ubuntu-latest
+    # TODO temporarily force-skip any in-container testing until we have a WFLY version that can execute it
+    if: "false"
     needs: build-jdk11
     timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
         java:
-          - { name: "8",
-              java-version: 8,
+          - { name: "11",
+              java-version: 17,
           }
           - {
-            name: "11",
-            java-version: 11,
+            name: "17",
+            java-version: 17,
           }
-        branch: [master, 3.1]
     steps:
       - name: Checkout Weld Parent repo
         uses: actions/checkout@v2
@@ -192,7 +182,6 @@ jobs:
         with:
           repository: weld/core
           path: core
-          ref: ${{matrix.branch}}
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v1.4.3
         with:
@@ -200,7 +189,7 @@ jobs:
       - name: Download Maven Repo
         uses: actions/download-artifact@v1
         with:
-          name: maven-repo-${{matrix.branch}}
+          name: maven-repo
           path: .
       - name: Extract Maven Repo
         shell: bash
@@ -208,7 +197,7 @@ jobs:
       - name: Download Patched WildFly
         uses: actions/download-artifact@v1
         with:
-          name: wildfly-patched-${{matrix.branch}}-zip
+          name: wildfly-patched-zip
           path: .
       - name: Extract WildFly
         run: unzip wildfly.zip
@@ -227,12 +216,12 @@ jobs:
         uses: actions/upload-artifact@v1
         if: failure()
         with:
-          name: test-reports-cdi-tck-jdk${{matrix.java.name}}-${{matrix.branch}}
+          name: test-reports-cdi-tck-jdk${{matrix.java.name}}
           path: 'test-reports.tgz'
 
   # Weld no-container tests, includes junit, Weld SE tests plus CDI TCKs and integration tests that don't require EE container
   no-container-tests:
-    name: "Weld ${{matrix.branch}} Tests w/o Container - JDK ${{matrix.java.name}}"
+    name: "Weld Tests w/o Container - JDK ${{matrix.java.name}}"
     runs-on: ubuntu-latest
     needs: build-jdk11
     timeout-minutes: 120
@@ -240,14 +229,13 @@ jobs:
       fail-fast: false
       matrix:
         java:
-          - { name: "8",
-              java-version: 8,
+          - { name: "11",
+              java-version: 11,
           }
           - {
-            name: "11",
-            java-version: 11,
+            name: "17",
+            java-version: 17,
           }
-        branch: [master, 3.1]
     steps:
       - name: Checkout Weld Parent repo
         uses: actions/checkout@v2
@@ -258,7 +246,6 @@ jobs:
         with:
           repository: weld/core
           path: core
-          ref: ${{matrix.branch}}
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v1.4.3
         with:
@@ -266,7 +253,7 @@ jobs:
       - name: Download Maven Repo
         uses: actions/download-artifact@v1
         with:
-          name: maven-repo-${{matrix.branch}}
+          name: maven-repo
           path: .
       - name: Extract Maven Repo
         shell: bash
@@ -285,12 +272,12 @@ jobs:
         uses: actions/upload-artifact@v1
         if: failure()
         with:
-          name: test-reports-no-container-jdk${{matrix.java.name}}-${{matrix.branch}}
+          name: test-reports-no-container-jdk${{matrix.java.name}}
           path: 'test-reports.tgz'
 
   # CDI TCK for SE environment
   CDI-TCK-SE:
-    name: "Weld ${{matrix.branch}} CDI TCK SE - JDK ${{matrix.java.name}}"
+    name: "Weld CDI TCK SE - JDK ${{matrix.java.name}}"
     runs-on: ubuntu-latest
     needs: build-jdk11
     timeout-minutes: 120
@@ -298,14 +285,13 @@ jobs:
       fail-fast: false
       matrix:
         java:
-          - { name: "8",
-              java-version: 8,
+          - { name: "11",
+              java-version: 11,
           }
           - {
-            name: "11",
+            name: "17",
             java-version: 11,
           }
-        branch: [master, 3.1]
     steps:
       - name: Checkout Weld Parent repo
         uses: actions/checkout@v2
@@ -316,7 +302,6 @@ jobs:
         with:
           repository: weld/core
           path: core
-          ref: ${{matrix.branch}}
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v1.4.3
         with:
@@ -324,7 +309,7 @@ jobs:
       - name: Download Maven Repo
         uses: actions/download-artifact@v1
         with:
-          name: maven-repo-${{matrix.branch}}
+          name: maven-repo
           path: .
       - name: Extract Maven Repo
         shell: bash
@@ -342,5 +327,5 @@ jobs:
         uses: actions/upload-artifact@v1
         if: failure()
         with:
-          name: test-reports-cdi-tck-se-jdk${{matrix.java.name}}-${{matrix.branch}}
+          name: test-reports-cdi-tck-se-jdk${{matrix.java.name}}
           path: 'test-reports.tgz'
