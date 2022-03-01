@@ -98,7 +98,7 @@
       <gpg.plugin.version>3.0.1</gpg.plugin.version>
       <install.plugin.version>2.5.2</install.plugin.version>
       <jar.plugin.version>3.2.0</jar.plugin.version>
-      <javadoc.plugin.version>3.3.0</javadoc.plugin.version>
+      <javadoc.plugin.version>3.3.2</javadoc.plugin.version>
       <jboss.plugin.version>1.5.0</jboss.plugin.version>
       <nexus.plugin.version>2.1</nexus.plugin.version>
       <release.version>2.5.3</release.version>
