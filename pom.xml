@@ -104,7 +104,7 @@
       <release.version>2.5.3</release.version>
       <remote.resources.version>1.7.0</remote.resources.version>
       <resources.plugin.version>3.2.0</resources.plugin.version>
-      <scm.plugin.version>1.11.2</scm.plugin.version>
+      <scm.plugin.version>1.13.0</scm.plugin.version>
       <selenium.plugin.version>2.3</selenium.plugin.version>
       <site.plugin.version>3.9.1</site.plugin.version>
       <shade.plugin.version>3.2.4</shade.plugin.version>
