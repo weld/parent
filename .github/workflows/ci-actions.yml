@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ master ]
 env:
-  # TODO as of writing this the nightly build is working towards EE 10 but not yet there; we therefore skip incontainer testing ATM
+  # Link to latest WFLY build
   WFLY_EE10: https://ci.wildfly.org/guestAuth/repository/download/WF_Nightly/latest.lastSuccessful/wildfly-latest-SNAPSHOT.zip
 
 jobs:
@@ -14,18 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Weld Parent repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: parent
       - name: Checkout Weld repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: weld/core
           path: core
       - name: Set up JDK
-        uses: actions/setup-java@v1.4.3
+        uses: actions/setup-java@v3
         with:
           java-version: 11
+          distribution: 'temurin'
       - name: Download WildFly
         run: |
           cd $GITHUB_WORKSPACE
@@ -44,7 +45,7 @@ jobs:
         shell: bash
       - name: Cache Maven Repository
         id: cache-maven
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           # Caching is an automated pre/post action that installs the cache if the key exists and exports the cache
@@ -58,7 +59,7 @@ jobs:
           PARENT_VERSION=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec -f parent/pom.xml)
           sed -i -e "/<parent>/,/<\/parent>/ s|<version>[0-9a-z.]\{1,\}</version>|<version>${PARENT_VERSION}</version>|g" core/pom.xml
           cd core
-          mvn clean install -DskipTests -B -V -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120
+          mvn clean install -DskipTests -Dformat.skip=true -B -V -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120
           cd ..
       - name: Patch WildFly
         run: |
@@ -71,7 +72,7 @@ jobs:
           zip -r wildfly.zip wildfly
           cd ..
       - name: Persist WildFly
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: wildfly-patched-zip
           path: container/wildfly.zip
@@ -79,7 +80,7 @@ jobs:
         shell: bash
         run: tar -czf maven-repo.tgz -C ~ .m2/repository
       - name: Persist Maven Repo
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: maven-repo
           path: maven-repo.tgz
@@ -91,8 +92,6 @@ jobs:
   incontainer-tests:
     name: "Weld In-container Tests - JDK ${{matrix.java.name}}"
     runs-on: ubuntu-latest
-    # TODO temporarily force-skip any in-container testing until we have a WFLY version that can execute it
-    if: "false"
     needs: build-jdk11
     timeout-minutes: 120
     strategy:
@@ -108,20 +107,21 @@ jobs:
           }
     steps:
       - name: Checkout Weld Parent repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: parent
       - name: Checkout Weld repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: weld/core
           path: core
       - name: Set up JDK ${{ matrix.java.name }}
-        uses: actions/setup-java@v1.4.3
+        uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java.java-version }}
+          distribution: 'temurin'
       - name: Download Maven Repo
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: maven-repo
           path: .
@@ -129,7 +129,7 @@ jobs:
         shell: bash
         run: tar -xzf maven-repo.tgz -C ~
       - name: Download Patched WildFly
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: wildfly-patched-zip
           path: .
@@ -141,13 +141,13 @@ jobs:
           sed -i -e "/<parent>/,/<\/parent>/ s|<version>[0-9a-z.]\{1,\}</version>|<version>${PARENT_VERSION}</version>|g" core/pom.xml
           JBOSS_HOME=`pwd`'/wildfly'
           export JBOSS_HOME=`echo $JBOSS_HOME`
-          mvn clean verify -Dincontainer -pl '!jboss-tck-runner,!impl' -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/pom.xml
+          mvn clean verify -Dincontainer -Dformat.skip=true -pl '!jboss-tck-runner,!impl' -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/pom.xml
       - name: Prepare failure archive (if maven failed)
         if: failure()
         shell: bash
         run: find . -name '*-reports' -type d | tar -czf test-reports.tgz -T -
       - name: Upload failure Archive (if maven failed)
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: test-reports-incontainer-jdk${{matrix.java.name}}
@@ -157,8 +157,6 @@ jobs:
   CDI-TCK:
     name: "Weld CDI TCK - JDK ${{matrix.java.name}}"
     runs-on: ubuntu-latest
-    # TODO temporarily force-skip any in-container testing until we have a WFLY version that can execute it
-    if: "false"
     needs: build-jdk11
     timeout-minutes: 120
     strategy:
@@ -174,20 +172,21 @@ jobs:
           }
     steps:
       - name: Checkout Weld Parent repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: parent
       - name: Checkout Weld repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: weld/core
           path: core
       - name: Set up JDK ${{ matrix.java.name }}
-        uses: actions/setup-java@v1.4.3
+        uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java.java-version }}
+          distribution: 'temurin'
       - name: Download Maven Repo
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: maven-repo
           path: .
@@ -195,7 +194,7 @@ jobs:
         shell: bash
         run: tar -xzf maven-repo.tgz -C ~
       - name: Download Patched WildFly
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: wildfly-patched-zip
           path: .
@@ -207,13 +206,13 @@ jobs:
           sed -i -e "/<parent>/,/<\/parent>/ s|<version>[0-9a-z.]\{1,\}</version>|<version>${PARENT_VERSION}</version>|g" core/pom.xml
           JBOSS_HOME=`pwd`'/wildfly'
           export JBOSS_HOME=`echo $JBOSS_HOME`
-          mvn clean verify -Dincontainer -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/jboss-tck-runner/pom.xml
+          mvn clean verify -Dincontainer -Dformat.skip=true -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/jboss-tck-runner/pom.xml
       - name: Prepare failure archive (if maven failed)
         if: failure()
         shell: bash
         run: find . -name '*-reports' -type d | tar -czf test-reports.tgz -T -
       - name: Upload failure Archive (if maven failed)
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: test-reports-cdi-tck-jdk${{matrix.java.name}}
@@ -238,20 +237,21 @@ jobs:
           }
     steps:
       - name: Checkout Weld Parent repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: parent
       - name: Checkout Weld repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: weld/core
           path: core
       - name: Set up JDK ${{ matrix.java.name }}
-        uses: actions/setup-java@v1.4.3
+        uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java.java-version }}
+          distribution: 'temurin'
       - name: Download Maven Repo
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: maven-repo
           path: .
@@ -262,14 +262,14 @@ jobs:
         run: |
           PARENT_VERSION=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec -f parent/pom.xml)
           sed -i -e "/<parent>/,/<\/parent>/ s|<version>[0-9a-z.]\{1,\}</version>|<version>${PARENT_VERSION}</version>|g" core/pom.xml
-          mvn clean verify -pl '!impl' -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/pom.xml
+          mvn clean verify -pl '!impl' -Dformat.skip=true -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/pom.xml
           mvn surefire:test -f core/impl/pom.xml
       - name: Prepare failure archive (if maven failed)
         if: failure()
         shell: bash
         run: find . -name '*-reports' -type d | tar -czf test-reports.tgz -T -
       - name: Upload failure Archive (if maven failed)
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: test-reports-no-container-jdk${{matrix.java.name}}
@@ -294,20 +294,21 @@ jobs:
           }
     steps:
       - name: Checkout Weld Parent repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: parent
       - name: Checkout Weld repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: weld/core
           path: core
       - name: Set up JDK ${{ matrix.java.name }}
-        uses: actions/setup-java@v1.4.3
+        uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java.java-version }}
+          distribution: 'temurin'
       - name: Download Maven Repo
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: maven-repo
           path: .
@@ -318,13 +319,13 @@ jobs:
         run: |
           PARENT_VERSION=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec -f parent/pom.xml)
           sed -i -e "/<parent>/,/<\/parent>/ s|<version>[0-9a-z.]\{1,\}</version>|<version>${PARENT_VERSION}</version>|g" core/pom.xml
-          mvn clean verify -Dincontainer=se -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/jboss-tck-runner/pom.xml
+          mvn clean verify -Dincontainer=se -Dformat.skip=true -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -f core/jboss-tck-runner/pom.xml
       - name: Prepare failure archive (if maven failed)
         if: failure()
         shell: bash
         run: find . -name '*-reports' -type d | tar -czf test-reports.tgz -T -
       - name: Upload failure Archive (if maven failed)
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: test-reports-cdi-tck-se-jdk${{matrix.java.name}}
