@@ -33,16 +33,10 @@
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
       <pdf.name>${project.artifactId}.pdf</pdf.name>
-      <minimum.maven.version>3.8.8</minimum.maven.version>
+      <minimum.maven.version>3.9.6</minimum.maven.version>
 
-      <!--
-      Options to override the compiler arguments directly on the compiler argument line to separate between what
-      the IDE understands as the source level and what the Maven compiler actually use.
-      -->
       <maven.compiler.source>11</maven.compiler.source>
       <maven.compiler.target>11</maven.compiler.target>
-      <maven.compiler.testTarget>${maven.compiler.target}</maven.compiler.testTarget>
-      <maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
 
       <!--
       Formatting versions and config
@@ -50,21 +44,6 @@
       <format.skip>false</format.skip>
       <formatter.version>2.23.0</formatter.version>
       <impsort.version>1.9.0</impsort.version>
-
-      <!--
-      Options to override the compiler arguments directly on the compiler argument line to separate between what
-      the IDE understands as the source level and what the Maven compiler actually use.
-      -->
-      <maven.compiler.argument.target>${maven.compiler.target}</maven.compiler.argument.target>
-      <maven.compiler.argument.source>${maven.compiler.source}</maven.compiler.argument.source>
-      <maven.compiler.argument.testTarget>${maven.compiler.testTarget}</maven.compiler.argument.testTarget>
-      <maven.compiler.argument.testSource>${maven.compiler.testSource}</maven.compiler.argument.testSource>
-
-      <!-- Should be equal to the newest Java version for which sources exist -->
-      <jdk.min.version>${maven.compiler.argument.source}</jdk.min.version>
-
-      <!-- Special version for MR JAR jdk-misc artifact -->
-      <version.jdk-misc>3.Final</version.jdk-misc>
 
       <!-- Suppress strict JavaDoc validation -->
       <!-- http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html -->
@@ -90,7 +69,7 @@
       <bundle.plugin.version>5.1.2</bundle.plugin.version>
       <cargo.plugin.version>1.8.5</cargo.plugin.version>
       <clean.plugin.version>3.1.0</clean.plugin.version>
-      <compiler.version>3.8.1-jboss-2</compiler.version>
+      <compiler.version>3.12.1</compiler.version>
       <dependency.plugin.version>3.2.0</dependency.plugin.version>
       <deploy.plugin.version>2.8.2</deploy.plugin.version>
       <ear.plugin.version>3.2.0</ear.plugin.version>
@@ -127,7 +106,7 @@
    </properties>
 
    <prerequisites>
-      <maven>3.8</maven>
+      <maven>3.9</maven>
    </prerequisites>
 
 
