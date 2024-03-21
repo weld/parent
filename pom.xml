@@ -520,7 +520,7 @@
                   <artifactId>nexus-staging-maven-plugin</artifactId>
                   <extensions>true</extensions>
                   <configuration>
-                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                      <serverId>sonatype-nexus-staging</serverId>
                      <!-- TODO should be eventually enabled, just commented out for testing pruposes -->
 <!--                     <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
