@@ -102,8 +102,8 @@ jobs:
               java-version: 11,
           }
           - {
-            name: "17",
-            java-version: 17,
+            name: "21",
+            java-version: 21,
           }
     steps:
       - name: Checkout Weld Parent repo
@@ -164,11 +164,11 @@ jobs:
       matrix:
         java:
           - { name: "11",
-              java-version: 17,
+              java-version: 11,
           }
           - {
-            name: "17",
-            java-version: 17,
+            name: "21",
+            java-version: 21,
           }
     steps:
       - name: Checkout Weld Parent repo
@@ -232,8 +232,8 @@ jobs:
               java-version: 11,
           }
           - {
-            name: "17",
-            java-version: 17,
+            name: "21",
+            java-version: 21,
           }
     steps:
       - name: Checkout Weld Parent repo
@@ -289,8 +289,8 @@ jobs:
               java-version: 11,
           }
           - {
-            name: "17",
-            java-version: 11,
+            name: "21",
+            java-version: 21,
           }
     steps:
       - name: Checkout Weld Parent repo
