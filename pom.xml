@@ -58,7 +58,7 @@
       <manifest.specification.version>1.2</manifest.specification.version>
 
       <!-- dependency versions -->
-      <maven.scm.provider.gitexe>1.11.2</maven.scm.provider.gitexe>
+      <maven.scm.provider.gitexe>2.0.1</maven.scm.provider.gitexe>
 
       <!-- plugin versions -->
       <antrun.plugin.version>3.0.0</antrun.plugin.version>
