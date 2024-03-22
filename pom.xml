@@ -371,7 +371,7 @@
                      <configuration>
                         <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
                         <revisionOnScmFailure>unavailable</revisionOnScmFailure>
-                        <timestampFormat>{0, date, long} {0, time, long}</timestampFormat>
+                        <timestampFormat>yyyy-MM-dd HH:mm:ss.S</timestampFormat>
                      </configuration>
                   </execution>
                </executions>
