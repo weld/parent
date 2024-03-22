@@ -165,6 +165,8 @@
                <configuration>
                   <arguments>-Drelease</arguments>
                   <autoVersionSubmodules>true</autoVersionSubmodules>
+                  <pushChanges>false</pushChanges>
+                  <localCheckout>true</localCheckout>
                </configuration>
                <version>${release.version}</version>
             </plugin>
