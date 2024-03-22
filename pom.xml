@@ -503,8 +503,8 @@
                   <configuration>
                      <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                      <serverId>sonatype-nexus-staging</serverId>
-                     <!-- TODO should be eventually enabled, just commented out for testing pruposes -->
-<!--                     <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+                     <!-- Automatically releases staging repo, no manual action needed -->
+                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                   </configuration>
                </plugin>
                <plugin>
