@@ -82,7 +82,7 @@
       <jboss.plugin.version>1.5.0</jboss.plugin.version>
       <nexus.staging.plugin.version>1.6.13</nexus.staging.plugin.version>
       <release.version>2.5.3</release.version>
-      <remote.resources.version>1.7.0</remote.resources.version>
+      <remote.resources.version>3.2.0</remote.resources.version>
       <resources.plugin.version>3.2.0</resources.plugin.version>
       <selenium.plugin.version>2.3</selenium.plugin.version>
       <site.plugin.version>3.12.1</site.plugin.version>
