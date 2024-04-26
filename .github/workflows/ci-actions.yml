@@ -98,8 +98,8 @@ jobs:
       fail-fast: false
       matrix:
         java:
-          - { name: "11",
-              java-version: 11,
+          - { name: "17",
+              java-version: 17,
           }
           - {
             name: "21",
@@ -163,8 +163,8 @@ jobs:
       fail-fast: false
       matrix:
         java:
-          - { name: "11",
-              java-version: 11,
+          - { name: "17",
+              java-version: 17,
           }
           - {
             name: "21",
@@ -228,8 +228,8 @@ jobs:
       fail-fast: false
       matrix:
         java:
-          - { name: "11",
-              java-version: 11,
+          - { name: "17",
+              java-version: 17,
           }
           - {
             name: "21",
@@ -285,8 +285,8 @@ jobs:
       fail-fast: false
       matrix:
         java:
-          - { name: "11",
-              java-version: 11,
+          - { name: "17",
+              java-version: 17,
           }
           - {
             name: "21",
