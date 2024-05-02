@@ -76,7 +76,7 @@
       <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
       <gmavenplus.plugin.version>3.0.2</gmavenplus.plugin.version>
       <gpg.plugin.version>3.2.4</gpg.plugin.version>
-      <install.plugin.version>3.1.1</install.plugin.version>
+      <install.plugin.version>3.1.2</install.plugin.version>
       <jar.plugin.version>3.4.1</jar.plugin.version>
       <javadoc.plugin.version>3.6.3</javadoc.plugin.version>
       <jboss.plugin.version>1.5.0</jboss.plugin.version>
