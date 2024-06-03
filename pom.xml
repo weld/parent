@@ -86,7 +86,7 @@
       <resources.plugin.version>3.3.1</resources.plugin.version>
       <selenium.plugin.version>2.3</selenium.plugin.version>
       <site.plugin.version>3.12.1</site.plugin.version>
-      <shade.plugin.version>3.5.3</shade.plugin.version>
+      <shade.plugin.version>3.6.0</shade.plugin.version>
       <source.plugin.version>3.3.1</source.plugin.version>
       <surefire.version>3.2.5</surefire.version>
       <war.plugin.version>3.4.0</war.plugin.version>
