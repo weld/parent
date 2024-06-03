@@ -9,7 +9,7 @@ env:
 
 jobs:
   # Preparation job that builds the cache, prepares snapshots and server
-  build-jdk11:
+  initial-build:
     name: "Initial Weld Build + WildFly patch"
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +25,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 11
+          java-version: 17
           distribution: 'temurin'
       - name: Download WildFly
         run: |
@@ -92,7 +92,7 @@ jobs:
   incontainer-tests:
     name: "Weld In-container Tests - JDK ${{matrix.java.name}}"
     runs-on: ubuntu-latest
-    needs: build-jdk11
+    needs: initial-build
     timeout-minutes: 120
     strategy:
       fail-fast: false
@@ -157,7 +157,7 @@ jobs:
   CDI-TCK:
     name: "Weld CDI TCK - JDK ${{matrix.java.name}}"
     runs-on: ubuntu-latest
-    needs: build-jdk11
+    needs: initial-build
     timeout-minutes: 120
     strategy:
       fail-fast: false
@@ -222,7 +222,7 @@ jobs:
   no-container-tests:
     name: "Weld Tests w/o Container - JDK ${{matrix.java.name}}"
     runs-on: ubuntu-latest
-    needs: build-jdk11
+    needs: initial-build
     timeout-minutes: 120
     strategy:
       fail-fast: false
@@ -279,7 +279,7 @@ jobs:
   CDI-TCK-SE:
     name: "Weld CDI TCK SE - JDK ${{matrix.java.name}}"
     runs-on: ubuntu-latest
-    needs: build-jdk11
+    needs: initial-build
     timeout-minutes: 120
     strategy:
       fail-fast: false
