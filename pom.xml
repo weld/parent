@@ -43,7 +43,7 @@
       -->
       <format.skip>false</format.skip>
       <formatter.version>2.24.0</formatter.version>
-      <impsort.version>1.9.0</impsort.version>
+      <impsort.version>1.10.0</impsort.version>
 
       <!-- Suppress strict JavaDoc validation -->
       <!-- http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html -->
