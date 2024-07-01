@@ -80,7 +80,7 @@
       <jar.plugin.version>3.4.2</jar.plugin.version>
       <javadoc.plugin.version>3.7.0</javadoc.plugin.version>
       <jboss.plugin.version>1.5.0</jboss.plugin.version>
-      <nexus.staging.plugin.version>1.6.13</nexus.staging.plugin.version>
+      <nexus.staging.plugin.version>1.7.0</nexus.staging.plugin.version>
       <release.version>3.0.1</release.version>
       <remote.resources.version>3.2.0</remote.resources.version>
       <resources.plugin.version>3.3.1</resources.plugin.version>
