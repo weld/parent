@@ -72,7 +72,7 @@
       <ear.plugin.version>3.3.0</ear.plugin.version>
       <enforcer.plugin.version>3.5.0</enforcer.plugin.version>
       <ejb.plugin.version>3.2.1</ejb.plugin.version>
-      <exec.plugin.version>3.3.0</exec.plugin.version>
+      <exec.plugin.version>3.4.1</exec.plugin.version>
       <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
       <gmavenplus.plugin.version>3.0.2</gmavenplus.plugin.version>
       <gpg.plugin.version>3.2.4</gpg.plugin.version>
