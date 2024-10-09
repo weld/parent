@@ -43,7 +43,7 @@
       -->
       <format.skip>false</format.skip>
       <formatter.version>2.24.1</formatter.version>
-      <impsort.version>1.11.0</impsort.version>
+      <impsort.version>1.12.0</impsort.version>
 
       <!-- Suppress strict JavaDoc validation -->
       <!-- http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html -->
@@ -462,6 +462,8 @@
                <configuration>
                   <!-- store outside of target to speed up formatting when mvn clean is used -->
                   <cachedir>.cache/impsort-maven-plugin-${impsort-maven-plugin.version}</cachedir>
+                  <!-- Compliance with certain JDK level, Weld now requires at least 17 -->
+                  <compliance>17</compliance>
                   <groups>java.,javax.,jakarta.,org.,com.</groups>
                   <staticGroups>*</staticGroups>
                   <skip>${format.skip}</skip>
