@@ -85,7 +85,7 @@
       <remote.resources.version>3.2.0</remote.resources.version>
       <resources.plugin.version>3.3.1</resources.plugin.version>
       <selenium.plugin.version>2.3</selenium.plugin.version>
-      <site.plugin.version>3.20.0</site.plugin.version>
+      <site.plugin.version>3.21.0</site.plugin.version>
       <shade.plugin.version>3.6.0</shade.plugin.version>
       <source.plugin.version>3.3.1</source.plugin.version>
       <surefire.version>3.5.1</surefire.version>
