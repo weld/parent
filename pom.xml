@@ -444,7 +444,7 @@
                      <!-- we are using Quarkus config here, just make sure it's updated from time to time -->
                      <groupId>io.quarkus</groupId>
                      <artifactId>quarkus-ide-config</artifactId>
-                     <version>3.16.1</version>
+                     <version>3.18.1</version>
                   </dependency>
                </dependencies>
                <configuration>
