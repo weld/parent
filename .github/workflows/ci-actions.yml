@@ -5,7 +5,8 @@ on:
     branches: [ master ]
 env:
   # Link to latest WFLY build
-  WFLY_EE10: https://ci.wildfly.org/guestAuth/repository/download/WF_Nightly/latest.lastSuccessful/wildfly-latest-SNAPSHOT.zip
+  WFLY_LINK: https://ci.wildfly.org/guestAuth/repository/download/WF_WildflyPreviewNightly/latest.lastSuccessful/wildfly-preview-latest-SNAPSHOT.zip
+  # For nightly builds, we can use https://ci.wildfly.org/guestAuth/repository/download/WF_Nightly/latest.lastSuccessful/wildfly-latest-SNAPSHOT.zip
 
 jobs:
   # Preparation job that builds the cache, prepares snapshots and server
@@ -22,6 +23,8 @@ jobs:
         with:
           repository: weld/core
           path: core
+          # TEMPORARY - using Weld 6 until there is a WFLY version which can run Weld 7 (EE 11)
+          ref: '6.0'
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
@@ -30,11 +33,8 @@ jobs:
       - name: Download WildFly
         run: |
           cd $GITHUB_WORKSPACE
-          wget $WFLY_EE10 -O wildfly-latest-SNAPSHOT.zip
-          unzip wildfly-latest-SNAPSHOT.zip
-          # ZIP contains two more ZIPs, sources and actual WFLY
-          rm wildfly-*-src.zip
-          rm wildfly-latest-SNAPSHOT.zip
+          wget https://ci.wildfly.org/guestAuth/repository/download/WF_WildflyPreviewNightly/latest.lastSuccessful/wildfly-preview-latest-SNAPSHOT.zip
+          unzip wildfly-preview-latest-SNAPSHOT.zip
           unzip wildfly-*.zip -d container
           cd container
           mv ./* wildfly/
@@ -115,6 +115,8 @@ jobs:
         with:
           repository: weld/core
           path: core
+          # TEMPORARY - using Weld 6 until there is a WFLY version which can run Weld 7 (EE 11)
+          ref: '6.0'
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v4
         with:
@@ -180,6 +182,8 @@ jobs:
         with:
           repository: weld/core
           path: core
+          # TEMPORARY - using Weld 6 until there is a WFLY version which can run Weld 7 (EE 11)
+          ref: '6.0'
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v4
         with:
@@ -245,6 +249,8 @@ jobs:
         with:
           repository: weld/core
           path: core
+          # TEMPORARY - using Weld 6 until there is a WFLY version which can run Weld 7 (EE 11)
+          ref: '6.0'
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v4
         with:
@@ -302,6 +308,8 @@ jobs:
         with:
           repository: weld/core
           path: core
+          # TEMPORARY - using Weld 6 until there is a WFLY version which can run Weld 7 (EE 11)
+          ref: '6.0'
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v4
         with:
