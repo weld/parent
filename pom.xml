@@ -45,6 +45,8 @@
       <!-- Suppress strict JavaDoc validation -->
       <!-- http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html -->
       <javadoc.doclint>-Xdoclint:none</javadoc.doclint>
+      <!-- Default javadoc source version, should be overriden by project if needed -->
+      <javadoc.source>11</javadoc.source>
 
       <!-- This information is not entirely correct -->
       <!-- See also https://issues.jboss.org/browse/WELD-2016 -->
@@ -240,7 +242,7 @@
                   <additionalOptions>
                      <additionalOption>${javadoc.doclint}</additionalOption>
                   </additionalOptions>
-                  <source>11</source>
+                  <source>${javadoc.source}</source>
                </configuration>
             </plugin>
             <plugin>
