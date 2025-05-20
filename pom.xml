@@ -35,9 +35,6 @@
       <pdf.name>${project.artifactId}.pdf</pdf.name>
       <minimum.maven.version>3.8.8</minimum.maven.version>
 
-      <maven.compiler.source>11</maven.compiler.source>
-      <maven.compiler.target>11</maven.compiler.target>
-
       <!--
       Formatting versions and config
       -->
