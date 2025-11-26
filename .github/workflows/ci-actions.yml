@@ -25,7 +25,7 @@ jobs:
           path: core
           ref: 'master'
       - name: Set up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: 17
           distribution: 'temurin'
@@ -120,7 +120,7 @@ jobs:
           path: core
           ref: 'master'
       - name: Set up JDK ${{ matrix.java.name }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: ${{ matrix.java.java-version }}
           distribution: 'temurin'
@@ -190,7 +190,7 @@ jobs:
           path: core
           ref: 'master'
       - name: Set up JDK ${{ matrix.java.name }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: ${{ matrix.java.java-version }}
           distribution: 'temurin'
@@ -260,7 +260,7 @@ jobs:
           path: core
           ref: 'master'
       - name: Set up JDK ${{ matrix.java.name }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: ${{ matrix.java.java-version }}
           distribution: 'temurin'
@@ -322,7 +322,7 @@ jobs:
           path: core
           ref: 'master'
       - name: Set up JDK ${{ matrix.java.name }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: ${{ matrix.java.java-version }}
           distribution: 'temurin'
