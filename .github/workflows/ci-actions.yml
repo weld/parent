@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Weld Parent repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: parent
       - name: Checkout Weld repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: weld/core
           path: core
@@ -110,11 +110,11 @@ jobs:
           }
     steps:
       - name: Checkout Weld Parent repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: parent
       - name: Checkout Weld repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: weld/core
           path: core
@@ -180,11 +180,11 @@ jobs:
           }
     steps:
       - name: Checkout Weld Parent repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: parent
       - name: Checkout Weld repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: weld/core
           path: core
@@ -250,11 +250,11 @@ jobs:
           }
     steps:
       - name: Checkout Weld Parent repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: parent
       - name: Checkout Weld repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: weld/core
           path: core
@@ -312,11 +312,11 @@ jobs:
           }
     steps:
       - name: Checkout Weld Parent repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: parent
       - name: Checkout Weld repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: weld/core
           path: core
