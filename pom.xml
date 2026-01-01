@@ -66,7 +66,7 @@
       <cargo.plugin.version>1.8.5</cargo.plugin.version>
       <clean.plugin.version>3.5.0</clean.plugin.version>
       <compiler.version>3.13.0</compiler.version>
-      <dependency.plugin.version>3.8.1</dependency.plugin.version>
+      <dependency.plugin.version>3.9.0</dependency.plugin.version>
       <deploy.plugin.version>3.1.4</deploy.plugin.version>
       <ear.plugin.version>3.4.0</ear.plugin.version>
       <enforcer.plugin.version>3.6.2</enforcer.plugin.version>
