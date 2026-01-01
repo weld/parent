@@ -57,7 +57,7 @@
       <manifest.specification.version>1.2</manifest.specification.version>
 
       <!-- plugin versions -->
-      <antrun.plugin.version>3.1.0</antrun.plugin.version>
+      <antrun.plugin.version>3.2.0</antrun.plugin.version>
       <archetype.plugin.version>3.3.1</archetype.plugin.version>
       <assembly.plugin.version>3.7.1</assembly.plugin.version>
       <build.helper.plugin.version>3.6.0</build.helper.plugin.version>
