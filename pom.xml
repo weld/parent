@@ -80,7 +80,7 @@
       <javadoc.plugin.version>3.12.0</javadoc.plugin.version>
       <jboss.plugin.version>1.5.0</jboss.plugin.version>
       <nexus.staging.plugin.version>1.7.0</nexus.staging.plugin.version>
-      <release.version>3.1.1</release.version>
+      <release.version>3.3.1</release.version>
       <remote.resources.version>3.3.0</remote.resources.version>
       <resources.plugin.version>3.4.0</resources.plugin.version>
       <selenium.plugin.version>2.3</selenium.plugin.version>
