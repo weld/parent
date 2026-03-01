@@ -62,7 +62,7 @@
       <assembly.plugin.version>3.8.0</assembly.plugin.version>
       <build.helper.plugin.version>3.6.1</build.helper.plugin.version>
       <buildnumber.plugin.version>3.3.0</buildnumber.plugin.version>
-      <bundle.plugin.version>6.0.0</bundle.plugin.version>
+      <bundle.plugin.version>6.0.2</bundle.plugin.version>
       <cargo.plugin.version>1.8.5</cargo.plugin.version>
       <clean.plugin.version>3.5.0</clean.plugin.version>
       <compiler.version>3.15.0</compiler.version>
