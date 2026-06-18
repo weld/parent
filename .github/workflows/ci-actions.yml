@@ -2,12 +2,7 @@ name: Weld Parent CI
 
 on:
   pull_request:
-    branches: [ master ]
-env:
-  # Link to latest WFLY build
-  WFLY_LINK: https://ci.wildfly.org/guestAuth/repository/download/WF_WildflyPreviewNightly/latest.lastSuccessful/wildfly-preview-latest-SNAPSHOT.zip
-  # For nightly builds, we can use https://ci.wildfly.org/guestAuth/repository/download/WF_Nightly/latest.lastSuccessful/wildfly-latest-SNAPSHOT.zip
-
+    branches: [ main ]
 jobs:
   # Preparation job that builds the cache, prepares snapshots and server
   initial-build:
@@ -23,7 +18,7 @@ jobs:
         with:
           repository: weld/core
           path: core
-          ref: 'master'
+          ref: 'main'
       - name: Set up JDK
         uses: actions/setup-java@v5
         with:
@@ -32,8 +27,10 @@ jobs:
       - name: Download WildFly
         run: |
           cd $GITHUB_WORKSPACE
-          wget https://ci.wildfly.org/guestAuth/repository/download/WF_WildflyPreviewNightly/latest.lastSuccessful/wildfly-preview-latest-SNAPSHOT.zip
-          unzip wildfly-preview-latest-SNAPSHOT.zip
+          wget https://ci.wildfly.org/guestAuth/repository/download/WF_Nightly/latest.lastSuccessful/wildfly-latest-SNAPSHOT.zip
+          unzip wildfly-latest-SNAPSHOT.zip
+          rm wildfly-*-src.zip
+          rm wildfly-latest-SNAPSHOT.zip
           unzip wildfly-*.zip -d container
           cd container
           mv ./* wildfly/
@@ -118,7 +115,7 @@ jobs:
         with:
           repository: weld/core
           path: core
-          ref: 'master'
+          ref: 'main'
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v5
         with:
@@ -188,7 +185,7 @@ jobs:
         with:
           repository: weld/core
           path: core
-          ref: 'master'
+          ref: 'main'
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v5
         with:
@@ -258,7 +255,7 @@ jobs:
         with:
           repository: weld/core
           path: core
-          ref: 'master'
+          ref: 'main'
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v5
         with:
@@ -320,7 +317,7 @@ jobs:
         with:
           repository: weld/core
           path: core
-          ref: 'master'
+          ref: 'main'
       - name: Set up JDK ${{ matrix.java.name }}
         uses: actions/setup-java@v5
         with:
