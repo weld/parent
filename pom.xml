@@ -447,7 +447,7 @@
                </dependencies>
                <configuration>
                   <!-- store outside of target to speed up formatting when mvn clean is used -->
-                  <cachedir>.cache/formatter-maven-plugin-${formatter-maven-plugin.version}</cachedir>
+                  <cachedir>.cache/formatter-maven-plugin-${formatter.version}</cachedir>
                   <configFile>eclipse-format.xml</configFile>
                   <lineEnding>LF</lineEnding>
                   <skip>${format.skip}</skip>
@@ -459,7 +459,7 @@
                <version>${impsort.version}</version>
                <configuration>
                   <!-- store outside of target to speed up formatting when mvn clean is used -->
-                  <cachedir>.cache/impsort-maven-plugin-${impsort-maven-plugin.version}</cachedir>
+                  <cachedir>.cache/impsort-maven-plugin-${impsort.version}</cachedir>
                   <!-- Compliance with certain JDK level, Weld now requires at least 17 -->
                   <compliance>17</compliance>
                   <groups>java.,javax.,jakarta.,org.,com.</groups>
