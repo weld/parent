@@ -1,4 +1,4 @@
 name: Weld Parent
 release:
-  current-version: 59
-  next-version: 60-SNAPSHOT
+  current-version: 60
+  next-version: 61-SNAPSHOT
