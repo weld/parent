@@ -69,7 +69,7 @@
       <dependency.plugin.version>3.11.0</dependency.plugin.version>
       <deploy.plugin.version>3.2.0</deploy.plugin.version>
       <ear.plugin.version>3.4.0</ear.plugin.version>
-      <enforcer.plugin.version>3.6.3</enforcer.plugin.version>
+      <enforcer.plugin.version>3.7.0</enforcer.plugin.version>
       <ejb.plugin.version>3.3.0</ejb.plugin.version>
       <exec.plugin.version>3.6.4</exec.plugin.version>
       <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
